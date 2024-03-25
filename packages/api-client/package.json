@@ -1,0 +1,7 @@
+{
+	"name": "@das-dui/api-client",
+	"packageManager": "yarn@4.1.1",
+	"version": "0.0.1",
+	"license": "GPL-3.0-only",
+	"private": true
+}
