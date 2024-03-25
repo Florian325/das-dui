@@ -1,6 +1,11 @@
 {
 	"name": "das-dui",
+	"version": "0.0.1",
 	"packageManager": "yarn@4.1.1",
 	"license": "GPL-3.0-only",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
 	"private": true
 }
