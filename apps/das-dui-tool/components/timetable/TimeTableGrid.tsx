@@ -1,18 +1,17 @@
 import { useQueryClient } from "@tanstack/react-query"
 import { useMemo } from "react"
 import TimetableBlockItem from "./TimetableBlockItem"
-import TimetableTimeType from "@/api/types/TimesType"
-import TimeTableTypes, { Lesson } from "@/api/types/TimetableTypes"
+import { TimetableResponse, TimetableTimeResponse } from "@das-dui/api-client"
 
-function TimetableGrid({ data }: { data: TimeTableTypes }) {
+function TimetableGrid({ data }: { data: TimetableResponse.Timetable }) {
 	const queryClient = useQueryClient()
 
 	const timetableTimeStructure = queryClient.getQueryData<
-		TimetableTimeType[] | null
+		TimetableTimeResponse.TimetableTime[] | null
 	>(["times"])
 
 	const timetableData = useMemo(() => {
-		const td: { [key: string]: Lesson[] } = {}
+		const td: { [key: string]: TimetableResponse.Lesson[] } = {}
 		data.lessons.forEach((item) =>
 			td[item.meta.displayname_hour]
 				? td[item.meta.displayname_hour].push(item)

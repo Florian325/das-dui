@@ -1,4 +1,4 @@
-export default interface TimetableTimeType {
+interface TimetableTime {
 	meta: {
 		displayname: string
 	}
@@ -11,3 +11,5 @@ export default interface TimetableTimeType {
 	description: null | string
 	is_hidden: boolean
 }
+
+export type { TimetableTime }

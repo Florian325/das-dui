@@ -1,10 +1,12 @@
-import { Lesson } from "@/api/types/TimetableTypes"
+import { TimetableResponse } from "@das-dui/api-client"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { atomWithStorage, createJSONStorage } from "jotai/utils"
 
-const lessonInfoStorage = createJSONStorage<Lesson | null>(() => AsyncStorage)
-const lessonInfo = atomWithStorage<Lesson | null>(
+const lessonInfoStorage = createJSONStorage<TimetableResponse.Lesson | null>(
+	() => AsyncStorage
+)
+const lessonInfo = atomWithStorage<TimetableResponse.Lesson | null>(
 	"lesson-info",
 	null,
 	lessonInfoStorage,

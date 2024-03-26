@@ -1,6 +1,6 @@
 import { useAuthToken } from "@/context/auth"
 import { useSetResponseInformation } from "@/context/responseInformation"
-import SduiBaseResponse from "@/types/SduiBaseResponse"
+import { BaseResponse } from "@das-dui/api-client"
 import axios, { AxiosError, AxiosResponse } from "axios"
 
 const useAxiosInstance = () => {
@@ -16,18 +16,16 @@ const useAxiosInstance = () => {
 	})
 
 	instance.interceptors.response.use(
-		(response: AxiosResponse<SduiBaseResponse<unknown>>) => {
+		(response: AxiosResponse<BaseResponse<unknown>>) => {
 			setResponseInformation(response.data.meta)
 			return response
 		},
 		(error: AxiosError) => {
 			console.log("error")
-			const originalResponse = error.response
-				?.data as SduiBaseResponse<unknown>
+			const originalResponse = error.response?.data as BaseResponse<unknown>
 			console.log(originalResponse)
 
-			if (originalResponse?.meta)
-				setResponseInformation(originalResponse.meta)
+			if (originalResponse?.meta) setResponseInformation(originalResponse.meta)
 			return Promise.reject(error)
 		}
 	)

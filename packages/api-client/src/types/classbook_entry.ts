@@ -1,4 +1,4 @@
-export interface Meta {
+interface Meta {
 	displayname: string
 	users_count?: null
 	shortname?: string
@@ -12,7 +12,7 @@ export interface Meta {
 	last_updated_at?: null
 }
 
-export interface Can {
+interface Can {
 	"view-members"?: number
 	"view-absences"?: number
 	"view-entries"?: number
@@ -34,7 +34,7 @@ export interface Can {
 	"view-history"?: number
 }
 
-export interface Grade {
+interface Grade {
 	id: number
 	shortcut: string
 	school_id: number
@@ -49,7 +49,7 @@ export interface Grade {
 	migrate_at?: null
 }
 
-export interface Bookable {
+interface Bookable {
 	meta: Meta
 	id: number
 	school_id: number
@@ -64,7 +64,7 @@ export interface Bookable {
 	user_id?: null
 }
 
-export interface Subject {
+interface Subject {
 	color: string
 	meta: Meta
 	id: number
@@ -72,7 +72,7 @@ export interface Subject {
 	name: string
 }
 
-export interface Course {
+interface Course {
 	meta: Meta
 	subject: Subject
 	id: number
@@ -81,12 +81,12 @@ export interface Course {
 	subject_id: number
 }
 
-export interface User {
+interface User {
 	id: number
 	meta: Meta
 }
 
-export interface Topic {
+interface Topic {
 	id: number
 	message: string
 	entry_id: number
@@ -95,18 +95,18 @@ export interface Topic {
 	meta: Meta
 }
 
-export interface EditedBy {
+interface EditedBy {
 	id: number
 	meta: Meta
 }
 
-export interface SourceEntry {
+interface SourceEntry {
 	id: number
 	course: Course
 	meta: Meta
 }
 
-export interface Homework {
+interface Homework {
 	id: number
 	message: string
 	updated_at: string
@@ -125,7 +125,7 @@ export interface Homework {
 	edited_by_id: number
 }
 
-interface ClassbookEntryData {
+interface ClassbookEntry {
 	id: number
 	classbook_id: number
 	lesson_id: number
@@ -144,4 +144,17 @@ interface ClassbookEntryData {
 	homeworks?: Homework[]
 }
 
-export default ClassbookEntryData
+export type {
+	ClassbookEntry,
+	Homework,
+	Topic,
+	User,
+	Course,
+	Subject,
+	Bookable,
+	Grade,
+	Can,
+	Meta,
+	EditedBy,
+	SourceEntry,
+}

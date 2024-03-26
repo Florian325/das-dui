@@ -15,10 +15,10 @@ import {
 import { useGetLessonInfo } from "@/context/lesson-info"
 import { useCallback } from "react"
 import { useQuery } from "@tanstack/react-query"
-import useSduiApiClient from "@/hooks/useSduiApiClient"
-import { Lesson } from "@/api/types/TimetableTypes"
+
 import useDateFromSeconds from "@/hooks/useDateFromSeconds"
-import ClassbookEntryData from "@/api/types/ClassbookEntryType"
+import useApiClient from "@/hooks/useApiClient"
+import { ClassbookEntryResponse, TimetableResponse } from "@das-dui/api-client"
 
 const ListItemSubtitleCanceled = styled(ListItemSubtitle, {
 	color: "$red",
@@ -29,7 +29,7 @@ const ListItemSubtitleCanceled = styled(ListItemSubtitle, {
 const DigitalClassbookSection = ({
 	classbookEntry,
 }: {
-	classbookEntry: ClassbookEntryData
+	classbookEntry: ClassbookEntryResponse.ClassbookEntry
 }) => {
 	return (
 		<YGroup alignSelf="center" bordered separator={<Separator />}>
@@ -66,14 +66,14 @@ const DigitalClassbookSection = ({
 const DigitalClassbookRoot = ({
 	lesson,
 }: {
-	lesson: Pick<Lesson, "id" | "begins_at">
+	lesson: Pick<TimetableResponse.Lesson, "id" | "begins_at">
 }) => {
-	const client = useSduiApiClient()
+	const client = useApiClient()
 	const date = useDateFromSeconds(lesson.begins_at)
 	const { data, isLoading } = useQuery({
 		queryKey: ["classbook-entry", { lessonId: lesson.id }],
 		queryFn: async () =>
-			client.getClassbookEntry(lesson.id, { date: date }),
+			client.getClassbookEntry({ lessonId: lesson.id, date: date }),
 	})
 
 	return (

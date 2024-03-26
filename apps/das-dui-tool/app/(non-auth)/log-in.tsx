@@ -1,6 +1,7 @@
-import ResponseInformation from "@/components/ResponseInformation"
+import ResponseInformation from "@/components/ui/ResponseInformation"
 import { useSetAuthToken, useSetIsAuthenticated } from "@/context/auth"
 import useAxiosInstance from "@/hooks/useAxiosInstance"
+import { BaseResponse, LoginResponse } from "@das-dui/api-client"
 import { useMutation } from "@tanstack/react-query"
 import { router, useLocalSearchParams } from "expo-router"
 import { useState } from "react"
@@ -21,16 +22,15 @@ export default function LogInScreen() {
 
 	const loginMutation = useMutation({
 		mutationFn: async () => {
-			const resp = await client.post<{ data: { access_token: string } }>(
-				"auth/login",
-				{
-					identifier: username,
-					password: password,
-					slink: slink,
-					showError: true,
-					token: "",
-				}
-			)
+			const resp = await client.post<
+				BaseResponse<LoginResponse.LoginToken>
+			>("auth/login", {
+				identifier: username,
+				password: password,
+				slink: slink,
+				showError: true,
+				token: "",
+			})
 			console.log(resp.data.data.access_token)
 			return resp.data.data.access_token
 		},

@@ -1,10 +1,14 @@
-import TimetableTimeType from "@/api/types/TimesType"
 import useDateFromSeconds from "@/hooks/useDateFromSeconds"
 import useTimeDifferenceHeight from "@/hooks/useTimeDifferenceHeight"
+import { TimetableTimeResponse } from "@das-dui/api-client"
 import { StyleSheet } from "react-native"
 import { Text, View } from "tamagui"
 
-const TimeSectionItem = ({ item }: { item: TimetableTimeType }) => {
+const TimeSectionItem = ({
+	item,
+}: {
+	item: TimetableTimeResponse.TimetableTime
+}) => {
 	const startTime = useDateFromSeconds(item.begins_at)
 	const endTime = useDateFromSeconds(item.ends_at)
 

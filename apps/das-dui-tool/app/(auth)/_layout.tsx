@@ -12,8 +12,8 @@ import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client
 import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useSelectedUserId, useUserId } from "@/context/userId"
-import useSduiApiClient from "@/hooks/useSduiApiClient"
 import { View } from "@/components/Themed"
+import useApiClient from "@/hooks/useApiClient"
 
 onlineManager.setEventListener((setOnline) => {
 	return NetInfo.addEventListener((state) => {
@@ -50,7 +50,7 @@ function AuthLayoutConsumer() {
 
 	const [userId, setUserId] = useUserId()
 	const [selectedUserId, setSelectedUserId] = useSelectedUserId()
-	const client = useSduiApiClient()
+	const client = useApiClient()
 
 	const queryClient = useQueryClient()
 
@@ -65,13 +65,13 @@ function AuthLayoutConsumer() {
 	}
 
 	const fetchSelf = async () => {
-		const resp = await queryClient.fetchQuery({
+		const response = await queryClient.fetchQuery({
 			queryKey: ["self", { userId: userId }],
-			queryFn: client.getSelf,
+			queryFn: async () => await client.getUser().then((r) => r.data),
 		})
-		setUserId(resp.id)
+		setUserId(response.data.id)
 		if (selectedUserId === 0) {
-			setSelectedUserId(resp.id)
+			setSelectedUserId(response.data.id)
 		}
 	}
 	fetchSelf()

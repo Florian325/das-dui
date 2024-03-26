@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import TimetableTimeType from "@/api/types/TimesType"
-import TimeTableTypes from "@/api/types/TimetableTypes"
-import SduiBaseResponse from "@/types/SduiBaseResponse"
+
+import {
+	BaseResponse,
+	TimetableResponse,
+	TimetableTimeResponse,
+} from "@das-dui/api-client"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { InfiniteData } from "@tanstack/react-query"
 import { AxiosResponse } from "axios"
@@ -9,14 +12,13 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { atomWithStorage, createJSONStorage } from "jotai/utils"
 
 const timetableTimeStructureStorage = createJSONStorage<
-	TimetableTimeType[] | null
+	TimetableTimeResponse.TimetableTime[] | null
 >(() => AsyncStorage)
-const timetableTimeStructure = atomWithStorage<TimetableTimeType[] | null>(
-	"timetable-time-structure",
-	null,
-	timetableTimeStructureStorage,
-	{ getOnInit: true }
-)
+const timetableTimeStructure = atomWithStorage<
+	TimetableTimeResponse.TimetableTime[] | null
+>("timetable-time-structure", null, timetableTimeStructureStorage, {
+	getOnInit: true,
+})
 export const useTimetableTimeStructure = () => useAtom(timetableTimeStructure)
 export const useSetTimetableTimeStructure = () =>
 	useSetAtom(timetableTimeStructure)
@@ -25,14 +27,14 @@ export const useGetTimetableTimeStructure = () =>
 
 const timetableDataStorage = createJSONStorage<
 	| InfiniteData<
-			AxiosResponse<SduiBaseResponse<TimeTableTypes>, any>,
+			AxiosResponse<BaseResponse<TimetableResponse.Timetable>, any>,
 			unknown
 	  >
 	| undefined
 >(() => AsyncStorage)
 const timetableData = atomWithStorage<
 	| InfiniteData<
-			AxiosResponse<SduiBaseResponse<TimeTableTypes>, any>,
+			AxiosResponse<BaseResponse<TimetableResponse.Timetable>, any>,
 			unknown
 	  >
 	| undefined

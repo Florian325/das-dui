@@ -1,8 +1,8 @@
 import { Button, ListItem, Spinner } from "tamagui"
 import * as Calendar from "expo-calendar"
 import { useState } from "react"
-import useSduiApiClient from "@/hooks/useSduiApiClient"
 import useTimetableOffsetRange from "@/hooks/useTimetableOffsetRange"
+import useApiClient from "@/hooks/useApiClient"
 
 const CalendarSyncView = () => {
 	// const [calendarPermission, setCalendarPermission] = useState(false)
@@ -20,7 +20,7 @@ const CalendarSyncView = () => {
 	// 	})
 	// }, [])
 
-	const client = useSduiApiClient()
+	const client = useApiClient()
 	const { today, offsetDate } = useTimetableOffsetRange(100)
 
 	const syncEvents = async () => {
@@ -61,10 +61,9 @@ const CalendarSyncView = () => {
 			today.toISOString().substring(0, 10),
 			offsetDate.toISOString().substring(0, 10)
 		)
-		const data = await client.getTimetable(
-			{ from: today, to: offsetDate },
-			0
-		)
+		const data = await client
+			.getTimetableByDate({ from: today, to: offsetDate })
+			.then((res) => res.data)
 		const events = data.data.lessons.filter(
 			(lesson) => lesson.kind == "EVENT"
 		)

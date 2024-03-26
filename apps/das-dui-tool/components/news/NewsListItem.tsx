@@ -2,7 +2,7 @@ import { Card, H4, Image, ListItem, Separator, View, YGroup } from "tamagui"
 import { StyleSheet, useWindowDimensions } from "react-native"
 import { RenderHTMLSource } from "react-native-render-html"
 import { openBrowserAsync } from "expo-web-browser"
-import NewsType from "@/api/types/NewsTypes"
+import { NewsResponse } from "@das-dui/api-client"
 
 const NewsListContent = ({ content }: { content: string }) => {
 	const { width } = useWindowDimensions()
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 	},
 })
 
-const NewsListItem = ({ item }: { item: NewsType }) => {
+const NewsListItem = ({ item }: { item: NewsResponse.News }) => {
 	return (
 		<Card marginVertical="$2" elevation={5}>
 			{item.title || item.preview ? (

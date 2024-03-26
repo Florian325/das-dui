@@ -1,16 +1,16 @@
-import useSduiApiClient from "@/hooks/useSduiApiClient"
 import { useQuery } from "@tanstack/react-query"
 import { StyleSheet } from "react-native"
 import { View } from "tamagui"
 import TimeSectionItem from "./TimeSectionItem"
 import TimetableTopBarContainer from "./TimetableTopBarContainer"
 import { memo } from "react"
+import useApiClient from "@/hooks/useApiClient"
 
 const TimesSection = () => {
-	const client = useSduiApiClient()
+	const client = useApiClient()
 	const { data } = useQuery({
 		queryKey: ["times"],
-		queryFn: client.getTimes,
+		queryFn: client.getTimesCleanedUp,
 	})
 	return (
 		<View

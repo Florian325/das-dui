@@ -1,17 +1,16 @@
-import TimetableTimeType from "@/api/types/TimesType"
-import { Lesson } from "@/api/types/TimetableTypes"
 import useDateFromSeconds from "@/hooks/useDateFromSeconds"
 import useTimeDifferenceHeight from "@/hooks/useTimeDifferenceHeight"
 import { StyleSheet } from "react-native"
 import TimetableLessonItem from "./TimetableLessonItem"
 import { View } from "tamagui"
+import { TimetableResponse, TimetableTimeResponse } from "@das-dui/api-client"
 
 const TimetableBlockItem = ({
 	item,
 	lessons,
 }: {
-	item: TimetableTimeType
-	lessons: Lesson[]
+	item: TimetableTimeResponse.TimetableTime
+	lessons: TimetableResponse.Lesson[]
 }) => {
 	const startTime = useDateFromSeconds(item.begins_at)
 	const endTime = useDateFromSeconds(item.ends_at)

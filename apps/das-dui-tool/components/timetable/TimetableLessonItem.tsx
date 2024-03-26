@@ -1,10 +1,14 @@
-import { Lesson } from "@/api/types/TimetableTypes"
 import { useSetLessonInfo } from "@/context/lesson-info"
+import { TimetableResponse } from "@das-dui/api-client"
 import { Link } from "expo-router"
 import { StyleSheet } from "react-native"
 import { Card, SizableText, ThemeName } from "tamagui"
 
-const TimetableLessonItem = ({ lesson }: { lesson: Lesson }) => {
+const TimetableLessonItem = ({
+	lesson,
+}: {
+	lesson: TimetableResponse.Lesson
+}) => {
 	const setLessonInfo = useSetLessonInfo()
 
 	const lessonKinds = ["BOOKABLE_CHANGE", "CANCLED", "EVENT", "SUBSTITUTION"]

@@ -51,7 +51,7 @@ interface LessonMeta {
 	displayname_kind: string
 }
 
-export interface Lesson {
+interface Lesson {
 	bookables: Bookable[]
 	grades: Grade[]
 	teachers: Teacher[]
@@ -72,7 +72,20 @@ enum LessonKind {
 	SUBSTITUTION = "SUBSTITUTION",
 }
 
-export default interface TimeTableTypes {
+interface Timetable {
 	lessons: Lesson[]
 	last_updated_at: string
+}
+
+export type {
+	Timetable,
+	Lesson,
+	Course,
+	CourseSubject,
+	CourseMeta,
+	Grade,
+	Bookable,
+	Teacher,
+	LessonKind,
+	LessonMeta,
 }

@@ -1,7 +1,7 @@
-import { SduiMetaObject } from "@/types/SduiBaseResponse"
+import { BaseResponseMeta } from "@das-dui/api-client"
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai"
 
-const responseInformation = atom<SduiMetaObject>({
+const responseInformation = atom<BaseResponseMeta>({
 	warnings: [],
 	errors: [],
 	success: [],

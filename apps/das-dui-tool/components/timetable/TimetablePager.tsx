@@ -1,6 +1,5 @@
 import { Spinner, Text, View } from "tamagui"
 import { memo } from "react"
-import useSduiApiClient from "@/hooks/useSduiApiClient"
 import { useQuery } from "@tanstack/react-query"
 import useTimetableWeekRange from "@/hooks/useTimetableWeekRange"
 import TimeTableGrid from "./TimeTableGrid"
@@ -8,6 +7,7 @@ import { StyleSheet } from "react-native"
 import TimetableTopBarContainer from "./TimetableTopBarContainer"
 import WeekDayBar from "./WeekDayBar"
 import { useGetSelectedUserId } from "@/context/userId"
+import useApiClient from "@/hooks/useApiClient"
 
 const TimetablePagerView = ({ index }: { index: number }) => {
 	return (
@@ -22,7 +22,7 @@ const TimetablePagerView = ({ index }: { index: number }) => {
 
 const TimetablePager = ({ index }: { index: number }) => {
 	console.log("Render Timetable Pager", index)
-	const client = useSduiApiClient()
+	const client = useApiClient()
 	const selectedUserId = useGetSelectedUserId()
 	const { monday, friday } = useTimetableWeekRange(index)
 	const { data, isLoading } = useQuery({
@@ -35,10 +35,15 @@ const TimetablePager = ({ index }: { index: number }) => {
 			},
 		],
 		queryFn: async () => {
-			return await client.getTimetableByUserId(selectedUserId, {
-				from: monday,
-				to: friday,
-			})
+			return await client
+				.getTimetableByDate(
+					{
+						from: monday,
+						to: friday,
+					},
+					selectedUserId
+				)
+				.then((res) => res.data)
 		},
 	})
 

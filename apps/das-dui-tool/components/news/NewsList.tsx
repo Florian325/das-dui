@@ -1,12 +1,12 @@
-import useSduiApiClient from "@/hooks/useSduiApiClient"
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query"
 import { useEffect } from "react"
 import { Text } from "tamagui"
 import NewsListItem from "./NewsListItem"
 import { FlashList } from "@shopify/flash-list"
+import useApiClient from "@/hooks/useApiClient"
 
 const NewsList = () => {
-	const client = useSduiApiClient()
+	const client = useApiClient()
 	const queryClient = useQueryClient()
 
 	const {
@@ -18,7 +18,8 @@ const NewsList = () => {
 		isRefetching,
 	} = useInfiniteQuery({
 		queryKey: ["news"],
-		queryFn: ({ pageParam }) => client.getNews(pageParam),
+		queryFn: ({ pageParam }) =>
+			client.getNewsByPage({ page: pageParam }).then((res) => res.data),
 		initialPageParam: 1,
 		getNextPageParam: (lastPage, _, lastPageParam) => {
 			return lastPage.data.length ? lastPageParam + 1 : null

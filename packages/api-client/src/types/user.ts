@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export interface SchoolType {
+interface SchoolType {
 	key: string
 	name: string
 	level: string
 }
 
-export interface Timetable {
+interface Schoolyear {
 	id: number
 	timetable_id: number
 	key: string
@@ -13,16 +13,16 @@ export interface Timetable {
 	ends_at: string
 	created_at: string
 	updated_at: string
-	pending_upload_group_id: null | number
+	pending_upload_group_id?: number
 	meta: {
 		displayname: string
 		is_active: boolean
 		shortname: string
 		files: any[] // You might want to replace `any[]` with a more specific type if possible
-		grades_count: null | number
-		courses_count: null | number
-		subjects_count: null | number
-		bookables_count: null | number
+		grades_count?: number
+		courses_count?: number
+		subjects_count?: number
+		bookables_count?: number
 	}
 	classbook: {
 		can: Record<string, number>
@@ -31,7 +31,7 @@ export interface Timetable {
 	}
 }
 
-export interface School {
+interface School {
 	id: number
 	name: string
 	name_alias: string
@@ -39,14 +39,14 @@ export interface School {
 	state: string
 	uuid: string
 	url: string
-	street: null | string
+	street?: string
 	is_beta: boolean
 	is_partner: boolean
 	shortcut: string
 	locale: string
-	environment: null | string
+	environment?: string
 	app_branding: string
-	old_id: null | number
+	old_id?: number
 	type: SchoolType
 	meta: {
 		subtitle: string
@@ -60,9 +60,9 @@ export interface School {
 		"chat-translations": number
 		"totp-2fa": number
 	}
-	auth_driver: null | string
+	auth_driver?: string
 	timetable: {
-		schoolyears: Timetable[]
+		schoolyears: Schoolyear[]
 		provider: string
 		can: Record<string, number>
 		meta: {
@@ -76,11 +76,11 @@ export interface School {
 	}
 }
 
-export interface Properties {
+interface UserProperties {
 	[key: string]: string | number | boolean | null
 }
 
-export interface ParentPivot {
+interface ParentPivot {
 	user_id: number
 	parent_id: number
 	relation: string
@@ -88,25 +88,25 @@ export interface ParentPivot {
 	is_accessable: number
 }
 
-export interface Grade {
+interface Grade {
 	id: number
 	shortcut: string
 	school_id: number
 	schoolyear_id: number
 	meta: {
 		displayname: string
-		users_count: null | number
+		users_count?: number
 	}
 	can: Record<string, number>
 	name: string
-	description: null | string
-	level: null | string
-	future_shortcut: null | string
-	bookable_id: null | number
-	migrate_at: null | string
+	description?: string
+	level?: string
+	future_shortcut?: string
+	bookable_id?: number
+	migrate_at?: string
 }
 
-export interface Role {
+interface UserRole {
 	updated_at: string
 	created_at: string
 	id: number
@@ -115,7 +115,7 @@ export interface Role {
 	description: string
 }
 
-export interface PrimaryRole {
+interface UserPrimaryRole {
 	translated_description: string
 	updated_at: string
 	created_at: string
@@ -125,7 +125,7 @@ export interface PrimaryRole {
 	description: string
 }
 
-export interface Meta {
+interface UserMeta {
 	displayname: string
 	subtitle: string
 	type: string
@@ -135,17 +135,13 @@ export interface Meta {
 	days_until_deletion: number
 	is_signed: boolean
 	is_paused: boolean
-	archived_at: null | string
-	deleted_at: null | string
+	archived_at?: string
+	deleted_at?: string
 	is_ping_opted_out: number
 	is_trackable_classbook_user: boolean
 }
 
-export interface Properties2 {
-	[key: string]: string | number | boolean | null
-}
-
-export default interface SelfUser {
+interface User {
 	data: {
 		uuid: string
 		firstname: string
@@ -153,12 +149,12 @@ export default interface SelfUser {
 		email: string
 		is_ghost: boolean
 		is_trackable: boolean
-		dob: null | string
-		external_source_id: null | string
-		tfa_mode: null | string
+		dob?: string
+		external_source_id?: string
+		tfa_mode?: string
 		permissions: any[] // You might want to replace `any[]` with a more specific type if possible
 		school: School
-		properties: Properties
+		properties: UserProperties
 	}
 	bookable: null
 	can: Record<string, number>
@@ -168,22 +164,35 @@ export default interface SelfUser {
 	loggedin_at: string
 	grade: Grade
 	grade_id: number
-	roles: Role[]
-	primary_role: PrimaryRole
+	roles: UserRole[]
+	primary_role: UserPrimaryRole
 	id: number
 	school_id: number
-	username: null | string
+	username?: string
 	type: string
 	title: string
 	sex: string
 	state: string
-	expire_at: null | string
+	expire_at?: string
 	locale: string
-	shortcut: null | string
-	shortcut_id: null | number
-	meta: Meta
+	shortcut?: string
+	shortcut_id?: number
+	meta: UserMeta
 	code: string
 	registered_at: string
-	confirmed_at: null | string
-	phone: null | string
+	confirmed_at?: string
+	phone?: string
+}
+
+export type {
+	SchoolType,
+	Schoolyear,
+	School,
+	UserProperties,
+	ParentPivot,
+	Grade,
+	UserRole,
+	UserPrimaryRole,
+	UserMeta,
+	User,
 }
