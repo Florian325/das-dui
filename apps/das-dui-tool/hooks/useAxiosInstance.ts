@@ -22,10 +22,12 @@ const useAxiosInstance = () => {
 		},
 		(error: AxiosError) => {
 			console.log("error")
-			const originalResponse = error.response?.data as BaseResponse<unknown>
+			const originalResponse = error.response
+				?.data as BaseResponse<unknown>
 			console.log(originalResponse)
 
-			if (originalResponse?.meta) setResponseInformation(originalResponse.meta)
+			if (originalResponse?.meta)
+				setResponseInformation(originalResponse.meta)
 			return Promise.reject(error)
 		}
 	)

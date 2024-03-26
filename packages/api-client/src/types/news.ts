@@ -243,4 +243,14 @@ interface News {
 	can: Can
 }
 
-export type { News, User, Channel, Attachment, Preview, Meta, Can, ChannelPivot, Survey }
+export type {
+	News,
+	User,
+	Channel,
+	Attachment,
+	Preview,
+	Meta,
+	Can,
+	ChannelPivot,
+	Survey,
+}

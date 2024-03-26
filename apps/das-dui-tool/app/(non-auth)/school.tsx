@@ -25,7 +25,9 @@ export default function LogInScreen() {
 	const { data, isLoading } = useQuery({
 		queryKey: ["school", searchQuery],
 		queryFn: async () => {
-			const response = await client.getLeadsByName({ searchQuery: searchQuery })
+			const response = await client.getLeadsByName({
+				searchQuery: searchQuery,
+			})
 			console.log(response.data.data)
 			return response.data
 		},
@@ -42,7 +44,12 @@ export default function LogInScreen() {
 			<FlatList
 				data={data?.data}
 				CellRendererComponent={({ children }) => (
-					<YGroup alignSelf="center" bordered size="$5" separator={<Separator />}>
+					<YGroup
+						alignSelf="center"
+						bordered
+						size="$5"
+						separator={<Separator />}
+					>
 						{children}
 					</YGroup>
 				)}
@@ -70,7 +77,9 @@ export default function LogInScreen() {
 					</YGroup.Item>
 				)}
 			/>
-			{data?.data.length == 0 && <H5 color={theme.yellow11.val}>No results</H5>}
+			{data?.data.length == 0 && (
+				<H5 color={theme.yellow11.val}>No results</H5>
+			)}
 			<Form onSubmit={() => true}>
 				<Label>School Name</Label>
 				<Input
