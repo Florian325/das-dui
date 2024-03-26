@@ -20,6 +20,10 @@ jobs:
       with:
         node-version: 20.x
         cache: 'yarn'
+        
+    - name: Eneble Corepack
+      run: corepack enable
+      
     - name: Install Dependencies
       run: yarn install
 
@@ -39,6 +43,10 @@ jobs:
       with:
         node-version: 20.x
         cache: 'yarn'
+        
+    - name: Eneble Corepack
+      run: corepack enable
+      
     - name: Install Dependencies
       run: yarn install
 
