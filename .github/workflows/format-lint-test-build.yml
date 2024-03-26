@@ -4,8 +4,6 @@
 name: Format, Lint, Test and Build on Pull Request
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -15,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Setup Repo
-    - uses: actions/checkout@v4
+      uses: actions/checkout@v4
     
     - name: Setup Node
       uses: actions/setup-node@v4
@@ -23,10 +21,10 @@ jobs:
         node-version: 20.x
         cache: 'yarn'
     - name: Install Dependencies
-    - run: yarn install
+      run: yarn install
 
     - name: Format
-    - run: yarn worksapces:format:fix
+      run: yarn worksapces:format:fix
 
   lint:
     needs: format
@@ -34,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Setup Repo
-    - uses: actions/checkout@v4
+      uses: actions/checkout@v4
     
     - name: Setup Node
       uses: actions/setup-node@v4
@@ -42,7 +40,7 @@ jobs:
         node-version: 20.x
         cache: 'yarn'
     - name: Install Dependencies
-    - run: yarn install
+      run: yarn install
 
     - name: Lint
-    - run: yarn worksapces:lint:check
+      run: yarn worksapces:lint:check
