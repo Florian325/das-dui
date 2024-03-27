@@ -3,6 +3,13 @@
 	"main": "expo-router/entry",
 	"version": "0.0.1",
 	"license": "GPL-3.0-only",
+	"repository": {
+		"url": "https://github.com/Florian325/das-dui",
+		"directory": "apps/das-dui-tool"
+	},
+	"author": {
+		"name": "Florian325"
+	},
 	"scripts": {
 		"start": "expo start",
 		"android": "expo run:android",
@@ -12,7 +19,8 @@
 		"format:prettier:check": "prettier . --check",
 		"format:prettier:fix": "prettier . --write",
 		"lint:eslint:check": "eslint .",
-		"lint:eslint:fix": "eslint . --fix"
+		"lint:eslint:fix": "eslint . --fix",
+		"tsc:test": "tsc --noEmit"
 	},
 	"jest": {
 		"preset": "jest-expo"

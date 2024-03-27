@@ -1,6 +1,12 @@
 {
 	"name": "das-dui",
 	"version": "0.0.1",
+	"repository": {
+		"url": "https://github.com/Florian325/das-dui"
+	},
+	"author": {
+		"name": "Florian325"
+	},
 	"packageManager": "yarn@4.1.1",
 	"license": "GPL-3.0-only",
 	"workspaces": [
@@ -13,7 +19,8 @@
 		"worksapces:format:check": "yarn workspaces foreach -Ap run format:prettier:check",
 		"worksapces:format:fix": "yarn workspaces foreach -Ap run format:prettier:fix",
 		"worksapces:lint:check": "yarn workspaces foreach -Ap run lint:eslint:check",
-		"worksapces:lint:fix": "yarn workspaces foreach -Ap run lint:eslint:fix"
+		"worksapces:lint:fix": "yarn workspaces foreach -Ap run lint:eslint:fix",
+		"workspaces:tsc:test": "yarn workspaces foreach -Ap run tsc:test"
 	},
 	"private": true,
 	"dependencies": {
