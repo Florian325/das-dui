@@ -27,7 +27,7 @@ jobs:
 
             - name: Get yarn cache directory path
               id: yarn-cache-dir-path
-              run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+              run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
 
             - name: Restore node_modules from cache
               uses: actions/cache@v4
@@ -39,7 +39,7 @@ jobs:
                       ${{ runner.os }}-yarn-
 
             - name: Install Dependencies
-              run: yarn install --frozen-lockfile
+              run: yarn install --immutable
 
             - name: Format
               run: yarn worksapces:format:check
@@ -63,7 +63,7 @@ jobs:
 
             - name: Get yarn cache directory path
               id: yarn-cache-dir-path
-              run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+              run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
 
             - name: Restore node_modules from cache
               uses: actions/cache@v4
@@ -75,7 +75,7 @@ jobs:
                       ${{ runner.os }}-yarn-
 
             - name: Install Dependencies
-              run: yarn install --frozen-lockfile
+              run: yarn install --immutable
 
             - name: Lint
               run: yarn worksapces:lint:check
