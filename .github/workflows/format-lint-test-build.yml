@@ -10,7 +10,7 @@ on:
 
 jobs:
     format-lint:
-        name: Formats the project
+        name: Formats and lints the project
         runs-on: ubuntu-latest
         steps:
             - name: Setup Repo
