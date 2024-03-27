@@ -33,3 +33,6 @@ jobs:
 
             - name: Lint
               run: yarn worksapces:lint:check
+
+            - name: TS Test Build
+              run: yarn workspaces:tsc:test

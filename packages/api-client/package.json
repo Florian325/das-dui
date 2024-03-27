@@ -2,13 +2,21 @@
 	"name": "@das-dui/api-client",
 	"packageManager": "yarn@4.1.1",
 	"version": "0.0.1",
-	"license": "GPL-3.0-only",
+	"license": "MIT",
+	"repository": {
+		"url": "https://github.com/Florian325/das-dui",
+		"directory": "packages/api-client"
+	},
+	"author": {
+		"name": "Florian325"
+	},
 	"main": "src/index.ts",
 	"scripts": {
 		"format:prettier:check": "prettier . --check",
 		"format:prettier:fix": "prettier . --write",
 		"lint:eslint:check": "eslint .",
-		"lint:eslint:fix": "eslint . --fix"
+		"lint:eslint:fix": "eslint . --fix",
+		"tsc:test": "tsc --noEmit"
 	},
 	"private": true,
 	"devDependencies": {
