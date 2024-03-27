@@ -104,9 +104,4 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 	},
-	separator: {
-		marginVertical: 30,
-		height: 5,
-		width: "80%",
-	},
 })

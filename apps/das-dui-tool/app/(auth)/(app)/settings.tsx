@@ -5,8 +5,6 @@ const SettingsPage = () => {
 	return (
 		<YStack style={styles.container} space>
 			<Text>Settings Page</Text>
-
-			{/* <CalendarSyncView /> */}
 		</YStack>
 	)
 }

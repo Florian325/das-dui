@@ -1,6 +1,6 @@
 // Inspired by https://github.com/computerjazz/react-native-infinite-pager/blob/main/src/index.tsx
 
-import React, { useState, useRef, memo } from "react"
+import React, { useState, useRef, memo, ReactNode } from "react"
 import { useStableCallback } from "./useStableCallback"
 import PagerView, { PagerViewProps } from "react-native-pager-view"
 import { View } from "tamagui"
@@ -11,7 +11,7 @@ export type InfinitePagerPageProps = {
 
 export type InfinitePagerPageComponent = (
 	props: InfinitePagerPageProps
-) => JSX.Element | null
+) => JSX.Element | ReactNode | null
 
 export type InfinitePagerProps = {
 	PageComponent:
@@ -38,7 +38,7 @@ const CustomInfinitePager = ({
 	const [pageIndices, setPageIndicies] = useState(
 		[...Array(DEFAULT_PAGE_COUNT)].map((_, i) => {
 			const bufferIndex = i - pageBuffer
-			console.log(bufferIndex)
+			// console.log(bufferIndex)
 			return bufferIndex
 		})
 	)
@@ -48,7 +48,7 @@ const CustomInfinitePager = ({
 	>("idle")
 
 	const onPageChangeInternal = useStableCallback((pg: number) => {
-		console.log("Current Index", pg)
+		// console.log("Current Index", pg)
 		if (pg <= newPageThreshold) {
 			setPageIndicies((prev) => [prev[0] - 1, ...prev])
 		} else if (pg >= pageIndices.length - 1 - newPageThreshold) {
@@ -59,7 +59,7 @@ const CustomInfinitePager = ({
 	})
 
 	const ref = useRef<PagerView | null>(null)
-	console.log(pageIndices.length)
+	// console.log(pageIndices.length)
 
 	const isInitialState = () => {
 		if (
@@ -67,7 +67,7 @@ const CustomInfinitePager = ({
 			pageScrollState === "idle"
 		) {
 			const zeroIndex = pageIndices.indexOf(0)
-			console.log("Zero Index", zeroIndex + initialPage)
+			// console.log("Zero Index", zeroIndex + initialPage)
 			ref.current?.setPageWithoutAnimation(zeroIndex + initialPage)
 			return true
 		}
@@ -82,7 +82,7 @@ const CustomInfinitePager = ({
 			initialPage={curIndex}
 			ref={ref}
 			onPageScrollStateChanged={(e) => {
-				console.log(e.nativeEvent.pageScrollState)
+				// console.log(e.nativeEvent.pageScrollState)
 				setPageScrollState(e.nativeEvent.pageScrollState)
 			}}
 			onPageSelected={(e) => {

@@ -1,5 +1,4 @@
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query"
-import { useEffect } from "react"
 import { Text } from "tamagui"
 import NewsListItem from "./NewsListItem"
 import { FlashList } from "@shopify/flash-list"
@@ -9,14 +8,7 @@ const NewsList = () => {
 	const client = useApiClient()
 	const queryClient = useQueryClient()
 
-	const {
-		data,
-		isLoading,
-		fetchNextPage,
-		isFetchingNextPage,
-		hasNextPage,
-		isRefetching,
-	} = useInfiniteQuery({
+	const { data, isLoading, fetchNextPage, isRefetching } = useInfiniteQuery({
 		queryKey: ["news"],
 		queryFn: ({ pageParam }) =>
 			client.getNewsByPage({ page: pageParam }).then((res) => res.data),
@@ -26,53 +18,24 @@ const NewsList = () => {
 		},
 	})
 
-	useEffect(() => {
-		console.log("next Page", hasNextPage)
-	}, [isFetchingNextPage])
-
-	useEffect(() => {
-		console.log("mount")
-	}, [])
-
+	if (isLoading) {
+		return <Text>Loading...</Text>
+	}
 	return (
-		<>
-			{isLoading && <Text>Loading...</Text>}
-			{/* {data?.pages.map((group, i) => (
-				<Fragment key={i}>
-					{group.data.data.map(project => (
-						<Text key={project.id}>{project.title}</Text>
-					))}
-				</Fragment>
-			))} */}
-			<FlashList
-				data={data?.pages.map((page) => page.data).flat() ?? []}
-				renderItem={({ item }) => (
-					<NewsListItem key={item.id} item={item} />
-				)}
-				estimatedItemSize={100}
-				// ListHeaderComponent={
-				// 	<Button
-				// 		onPress={() => {
-				// 			console.log("resetQueries")
-
-				// 			queryClient.resetQueries({ queryKey: ["news"] })
-				// 		}}>
-				// 		Delete Queries
-				// 	</Button>
-				// }
-				// ListFooterComponent={
-				// 	<Button onPress={() => fetchNextPage()}>Load More</Button>
-				// }
-				contentContainerStyle={{ paddingHorizontal: 20 }}
-				onRefresh={() =>
-					queryClient.invalidateQueries({ queryKey: ["news"] })
-				}
-				refreshing={isRefetching}
-				onEndReached={() => fetchNextPage()}
-				onEndReachedThreshold={2}
-			/>
-			{/* <Button onPress={() => fetchNextPage()}>Load More</Button> */}
-		</>
+		<FlashList
+			data={data?.pages.map((page) => page.data).flat() ?? []}
+			renderItem={({ item }) => (
+				<NewsListItem key={item.id} item={item} />
+			)}
+			estimatedItemSize={100}
+			contentContainerStyle={{ paddingHorizontal: 20 }}
+			onRefresh={() =>
+				queryClient.invalidateQueries({ queryKey: ["news"] })
+			}
+			refreshing={isRefetching}
+			onEndReached={() => fetchNextPage()}
+			onEndReachedThreshold={2}
+		/>
 	)
 }
 

@@ -13,7 +13,6 @@ const lessonInfo = atomWithStorage<TimetableResponse.Lesson | null>(
 	{ getOnInit: true }
 )
 
-// const lessonInfo = atomWithStorage<Lesson | null>(null)
 export const useLessonInfo = () => useAtom(lessonInfo)
 export const useSetLessonInfo = () => useSetAtom(lessonInfo)
 export const useGetLessonInfo = () => useAtomValue(lessonInfo)
