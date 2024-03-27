@@ -14,7 +14,6 @@ export const useIsAuthenticated = () => useAtom(isAuthenticatedAtom)
 export const useSetIsAuthenticated = () => useSetAtom(isAuthenticatedAtom)
 export const useGetIsAuthenticated = () => useAtomValue(isAuthenticatedAtom)
 
-// const authTokenAtom = atom<string | null>(null)
 const authTokenInitailValue = SecureStore.getItem("auth-token") ?? ""
 const authTokenAtom = atomWithStorage("auth-token", authTokenInitailValue, {
 	getItem: async (key: string, initialValue: string) => {

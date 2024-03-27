@@ -26,4 +26,5 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 1.5,
 	},
 })
+
 export default TimetableTopBarContainer

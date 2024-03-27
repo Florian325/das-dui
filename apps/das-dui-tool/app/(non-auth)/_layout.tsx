@@ -5,7 +5,8 @@ import { ReactNode } from "react"
 import { H2, useTheme } from "tamagui"
 
 const queryClient = new QueryClient()
-export default function AppLayout() {
+
+export default function NonAuthLayout() {
 	const isAuthenticated = useGetIsAuthenticated()
 	const theme = useTheme()
 

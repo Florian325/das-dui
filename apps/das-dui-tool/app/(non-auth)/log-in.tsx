@@ -41,8 +41,6 @@ export default function LogInScreen() {
 		},
 	})
 
-	// return <Redirect href="/(non-auth)/school" />
-
 	return (
 		<Form onSubmit={loginMutation.mutate} style={styles.container}>
 			<YStack gap={"$5"}>

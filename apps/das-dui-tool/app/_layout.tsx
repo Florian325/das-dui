@@ -86,6 +86,7 @@ function RootLayoutNav() {
 
 	NavigationBar.setBackgroundColorAsync(theme.background.val)
 	NavigationBar.setButtonStyleAsync(colorScheme === "dark" ? "light" : "dark")
+
 	return (
 		<TRenderEngineProvider
 			systemFonts={["Inter", "InterBold"]}

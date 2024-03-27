@@ -8,10 +8,12 @@ import useApiClient from "@/hooks/useApiClient"
 
 const TimesSection = () => {
 	const client = useApiClient()
+
 	const { data } = useQuery({
 		queryKey: ["times"],
 		queryFn: client.getTimesCleanedUp,
 	})
+
 	return (
 		<View
 			style={styles.container}
@@ -26,7 +28,6 @@ const TimesSection = () => {
 
 const styles = StyleSheet.create({
 	container: {
-		// backgroundColor: "red",
 		borderRightWidth: 0.5,
 		zIndex: 3,
 	},

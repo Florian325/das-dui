@@ -1,7 +1,7 @@
 import { useGetIsAuthenticated } from "@/context/auth"
 import { Redirect, Stack } from "expo-router"
 import { H3, useTheme } from "tamagui"
-import { ReactNode } from "react"
+import { FC, ReactNode } from "react"
 import {
 	QueryClient,
 	onlineManager,
@@ -33,7 +33,11 @@ const queryClient = new QueryClient({
 const asyncStoragePersister = createAsyncStoragePersister({
 	storage: AsyncStorage,
 })
-const Persister = ({ children }: { children: ReactNode }) => {
+
+interface PersisterProps {
+	children: ReactNode
+}
+const Persister: FC<PersisterProps> = ({ children }) => {
 	return (
 		<PersistQueryClientProvider
 			client={queryClient}

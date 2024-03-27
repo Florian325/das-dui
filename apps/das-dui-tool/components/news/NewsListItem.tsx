@@ -1,84 +1,27 @@
-import { Card, H4, Image, ListItem, Separator, View, YGroup } from "tamagui"
-import { StyleSheet, useWindowDimensions } from "react-native"
-import { RenderHTMLSource } from "react-native-render-html"
-import { openBrowserAsync } from "expo-web-browser"
+import { Card } from "tamagui"
 import { NewsResponse } from "@das-dui/api-client"
+import { FC, memo } from "react"
+import NewsListItemHeader from "./NewsListItemHeader"
+import NewsListItemBody from "./NewsListItemBody"
+import NewsListItemAttachments from "./NewsListItemAttachment"
 
-const NewsListContent = ({ content }: { content: string }) => {
-	const { width } = useWindowDimensions()
-	const source = {
-		html: `${content}`,
-	}
-	return <RenderHTMLSource contentWidth={width} source={source} />
+interface NewsListItemProps {
+	item: NewsResponse.News
 }
 
-const styles = StyleSheet.create({
-	image: {
-		height: 200,
-		resizeMode: "contain",
-		marginTop: 10,
-	},
-})
-
-const NewsListItem = ({ item }: { item: NewsResponse.News }) => {
+const NewsListItem: FC<NewsListItemProps> = ({ item }) => {
 	return (
 		<Card marginVertical="$2" elevation={5}>
-			{item.title || item.preview ? (
-				<Card.Header>
-					{item.title && <H4 lineHeight={"$3"}>{item.title}</H4>}
-					{item.preview && (
-						<Image
-							source={{
-								uri: item.preview.meta.uri,
-							}}
-							// height={200}
-							// resizeMode="contain"
-							style={styles.image}
-						/>
-					)}
-				</Card.Header>
-			) : (
-				<></>
-			)}
-			<View style={{ paddingHorizontal: 20 }}>
-				<NewsListContent content={item.content_rendered} />
-			</View>
-
-			{
-				// .filter((val) => !["png", "jpg", "jpeg", "bmp"].includes(val.extension))
-				item.attachments.length > 0 && (
-					<Card.Footer style={{ padding: 20 }}>
-						<YGroup
-							bordered
-							width={"100%"}
-							size="$5"
-							separator={<Separator />}
-						>
-							{item.attachments
-								// .filter((val) => val.type == "application/pdf")
-								.map((item, index) => (
-									<YGroup.Item key={index}>
-										<ListItem
-											hoverTheme
-											pressTheme
-											title={item.name}
-											subTitle={item.type}
-											onPress={async () =>
-												await openBrowserAsync(
-													item.meta.uri
-												)
-											}
-										/>
-									</YGroup.Item>
-								))}
-						</YGroup>
-					</Card.Footer>
-				)
-			}
-
-			{/* <Text>{item.content}</Text> */}
+			<NewsListItemHeader title={item.title} preview={item.preview} />
+			<NewsListItemBody content_rendered={item.content_rendered} />
+			<NewsListItemAttachments attachments={item.attachments} />
 		</Card>
 	)
 }
 
-export default NewsListItem
+export default memo(NewsListItem, (prevProps, nextProps) => {
+	return (
+		prevProps.item.id === nextProps.item.id &&
+		prevProps.item.updated_at === nextProps.item.updated_at
+	)
+})

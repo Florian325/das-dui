@@ -1,14 +1,15 @@
 import useDateFromSeconds from "@/hooks/useDateFromSeconds"
 import useTimeDifferenceHeight from "@/hooks/useTimeDifferenceHeight"
 import { TimetableTimeResponse } from "@das-dui/api-client"
+import { FC } from "react"
 import { StyleSheet } from "react-native"
 import { Text, View } from "tamagui"
 
-const TimeSectionItem = ({
-	item,
-}: {
+interface TimeSectionItemProps {
 	item: TimetableTimeResponse.TimetableTime
-}) => {
+}
+
+const TimeSectionItem: FC<TimeSectionItemProps> = ({ item }) => {
 	const startTime = useDateFromSeconds(item.begins_at)
 	const endTime = useDateFromSeconds(item.ends_at)
 
@@ -17,7 +18,6 @@ const TimeSectionItem = ({
 		endTime: endTime,
 	})
 
-	// console.log(timeDiff)
 	if (item.type === "LESSON")
 		return (
 			<View
@@ -39,6 +39,7 @@ const TimeSectionItem = ({
 				</Text>
 			</View>
 		)
+
 	return (
 		<View
 			height={timeDiff}

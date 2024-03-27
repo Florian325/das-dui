@@ -4,14 +4,14 @@ import { StyleSheet } from "react-native"
 import TimetableLessonItem from "./TimetableLessonItem"
 import { View } from "tamagui"
 import { TimetableResponse, TimetableTimeResponse } from "@das-dui/api-client"
+import { FC } from "react"
 
-const TimetableBlockItem = ({
-	item,
-	lessons,
-}: {
+interface TimetableBlockItemProps {
 	item: TimetableTimeResponse.TimetableTime
 	lessons: TimetableResponse.Lesson[]
-}) => {
+}
+
+const TimetableBlockItem: FC<TimetableBlockItemProps> = ({ item, lessons }) => {
 	const startTime = useDateFromSeconds(item.begins_at)
 	const endTime = useDateFromSeconds(item.ends_at)
 
@@ -60,11 +60,7 @@ const TimetableBlockItem = ({
 const styles = StyleSheet.create({
 	lessonSection: {
 		borderBottomWidth: 0.5,
-		// paddingHorizontal: 8,
 		display: "flex",
-		// flex: 1,
-		// alignItems: "center",
-		// justifyContent: "space-between",
 		flexDirection: "row",
 	},
 	break: {
@@ -77,12 +73,6 @@ const styles = StyleSheet.create({
 		gap: 2,
 		flexDirection: "row",
 		padding: 2,
-	},
-	lessonItem: {
-		// backgroundColor: "red",
-		flex: 1,
-		padding: 2,
-		borderRadius: 5,
 	},
 })
 

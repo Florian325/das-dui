@@ -1,20 +1,11 @@
-import { FontAwesome } from "@expo/vector-icons"
+import TabBarIcon from "@/components/ui/TabBarIcon"
 import { Tabs } from "expo-router"
 import { ReactNode } from "react"
 import { H2, useTheme } from "tamagui"
 
-function TabBarIcon(props: {
-	name: React.ComponentProps<typeof FontAwesome>["name"]
-	color: string
-}) {
-	return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />
-}
-
-export default function AppLayout() {
+export default function AuthAppLayout() {
 	const theme = useTheme()
-	// const queryClient = useQueryClient()
 
-	// This layout can be deferred because it's not the root layout.
 	return (
 		<Tabs
 			initialRouteName="timetable"
@@ -33,34 +24,14 @@ export default function AppLayout() {
 					shadowOffset: { width: 0, height: 1 },
 					shadowOpacity: 0.8,
 					shadowRadius: 1,
-					// elevation: 3,
-					// borderTopLeftRadius: 10,
-					// borderTopRightRadius: 10,
-					// zIndex: 20,
-					// position: "absolute",
 				},
 				tabBarActiveTintColor: theme.colorFocus.val,
 				tabBarInactiveTintColor: theme.color.val,
 				tabBarIconStyle: {},
-				// tabBarActiveBackgroundColor: theme.background.val,
 			}}
 		>
-			{/* <Tabs.Screen
-				name="index"
-				redirect
-				options={{
-					title: "Tab One",
-					tabBarIcon: ({ color }) => (
-						<TabBarIcon name="amazon" color={color} />
-					),
-				}}
-			/> */}
 			<Tabs.Screen
 				name="news"
-				// listeners={{
-				// 	tabPress: () =>
-				// 		queryClient.invalidateQueries({ queryKey: ["news"] }),
-				// }}
 				options={{
 					title: "News",
 					tabBarIcon: ({ color }) => (
@@ -86,7 +57,6 @@ export default function AppLayout() {
 					),
 				}}
 			/>
-			{/* <Tabs.Screen name="infinite" options={{ title: "infinite" }} /> */}
 			<Tabs.Screen name="index" options={{ href: null }} />
 		</Tabs>
 	)

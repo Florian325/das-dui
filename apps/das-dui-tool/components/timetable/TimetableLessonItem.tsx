@@ -1,14 +1,15 @@
 import { useSetLessonInfo } from "@/context/lesson-info"
 import { TimetableResponse } from "@das-dui/api-client"
 import { Link } from "expo-router"
+import { FC } from "react"
 import { StyleSheet } from "react-native"
 import { Card, SizableText, ThemeName } from "tamagui"
 
-const TimetableLessonItem = ({
-	lesson,
-}: {
+interface TimetableLessonItemProps {
 	lesson: TimetableResponse.Lesson
-}) => {
+}
+
+const TimetableLessonItem: FC<TimetableLessonItemProps> = ({ lesson }) => {
 	const setLessonInfo = useSetLessonInfo()
 
 	const lessonKinds = ["BOOKABLE_CHANGE", "CANCLED", "EVENT", "SUBSTITUTION"]
@@ -34,17 +35,9 @@ const TimetableLessonItem = ({
 				// Raum geändert
 				// Event
 				{...(lesson.kind && {
-					theme:
-						// lesson.kind === "CANCLED"
-						// 	? "red"
-						// 	: lesson.kind === "EVENT"
-						// 	? "green"
-						// 	: lesson.kind === "BOOKABLE_CHANGE"
-						// 	? "yellow"
-						// 	: "alt1",
-						lessonKinds.includes(lesson.kind)
-							? lessonKindThemes[lesson.kind]
-							: "active",
+					theme: lessonKinds.includes(lesson.kind)
+						? lessonKindThemes[lesson.kind]
+						: "active",
 				})}
 			>
 				<SizableText
@@ -98,14 +91,12 @@ const TimetableLessonItem = ({
 
 const styles = StyleSheet.create({
 	lessonContainer: {
-		// backgroundColor: "red",
 		flex: 1,
 		padding: 2,
 		alignItems: "center",
 		justifyContent: "space-between",
 		gap: 0,
 		overflow: "hidden",
-		// borderRadius: 5,
 		elevation: 5,
 	},
 })

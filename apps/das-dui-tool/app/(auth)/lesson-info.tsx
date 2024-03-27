@@ -13,7 +13,7 @@ import {
 	styled,
 } from "tamagui"
 import { useGetLessonInfo } from "@/context/lesson-info"
-import { useCallback } from "react"
+import { FC, useCallback } from "react"
 import { useQuery } from "@tanstack/react-query"
 
 import useDateFromSeconds from "@/hooks/useDateFromSeconds"
@@ -26,10 +26,12 @@ const ListItemSubtitleCanceled = styled(ListItemSubtitle, {
 	textDecorationLine: "line-through",
 })
 
-const DigitalClassbookSection = ({
-	classbookEntry,
-}: {
+interface DigitalClassbookSectionProps {
 	classbookEntry: ClassbookEntryResponse.ClassbookEntry
+}
+
+const DigitalClassbookSection: FC<DigitalClassbookSectionProps> = ({
+	classbookEntry,
 }) => {
 	return (
 		<YGroup alignSelf="center" bordered separator={<Separator />}>
@@ -63,11 +65,11 @@ const DigitalClassbookSection = ({
 	)
 }
 
-const DigitalClassbookRoot = ({
-	lesson,
-}: {
+interface DigitalClassbookRootProps {
 	lesson: Pick<TimetableResponse.Lesson, "id" | "begins_at">
-}) => {
+}
+
+const DigitalClassbookRoot: FC<DigitalClassbookRootProps> = ({ lesson }) => {
 	const client = useApiClient()
 	const date = useDateFromSeconds(lesson.begins_at)
 	const { data, isLoading } = useQuery({
@@ -92,9 +94,7 @@ const DigitalClassbookRoot = ({
 	)
 }
 
-export default function Modal() {
-	// If the page was reloaded or navigated to directly, then the modal should be presented as
-	// a full screen page. You may need to change the UI to account for this.
+export default function LessonInfo() {
 	const navigation = useNavigation()
 	const lessonInfo = useGetLessonInfo()
 
@@ -236,7 +236,6 @@ export default function Modal() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		// justifyContent: "center",
 		alignItems: "center",
 	},
 })
