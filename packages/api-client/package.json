@@ -16,7 +16,7 @@
 		"format:prettier:fix": "prettier . --write",
 		"lint:eslint:check": "eslint .",
 		"lint:eslint:fix": "eslint . --fix",
-		"tsc:test": "tsc --noEmit"
+		"tsc:test": "tsc --build --clean"
 	},
 	"private": true,
 	"devDependencies": {
