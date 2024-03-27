@@ -39,7 +39,7 @@ jobs:
                       ${{ runner.os }}-yarn-
 
             - name: Install Dependencies
-              run: yarn install --immutable
+              run: yarn install --immutable --check-cache
 
             - name: Format
               run: yarn worksapces:format:check
@@ -75,7 +75,7 @@ jobs:
                       ${{ runner.os }}-yarn-
 
             - name: Install Dependencies
-              run: yarn install --immutable
+              run: yarn install --immutable --check-cache
 
             - name: Lint
               run: yarn worksapces:lint:check
