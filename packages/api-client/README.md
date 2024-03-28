@@ -68,7 +68,7 @@ Contributions are welcome! If you encounter any issues or have suggestions for i
 
 ## 📝 License
 
-This package is licensed under the [MIT License](https://github.com/Florian325/das-dui/blob/main/LICENSE). Feel free to use, modify, and distribute it as per the terms of the license.
+This package is licensed under the [MIT License](https://github.com/Florian325/das-dui/blob/main/packages/api-client/LICENSE). Feel free to use, modify, and distribute it as per the terms of the license.
 
 ---
 
