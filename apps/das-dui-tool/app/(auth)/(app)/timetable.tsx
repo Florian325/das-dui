@@ -1,13 +1,33 @@
 import TimesSection from "@/components/timetable/TimesSection"
-import { StyleSheet } from "react-native"
+import { RefreshControl, StyleSheet } from "react-native"
 import { ScrollView, View } from "tamagui"
 import TimetablePageView from "@/components/timetable/TimetablePage"
 import CustomInfiniteViewPager from "@/lib/CustomInfiniteViewPager"
+import { useIsFetching, useQueryClient } from "@tanstack/react-query"
+import { useCallback } from "react"
 
 export default function TimetableView() {
+	const queryClient = useQueryClient()
+	const fetching = useIsFetching({
+		queryKey: ["timetableWeekItem"],
+	})
+
+	const refetchTimetable = useCallback(async () => {
+		await queryClient.invalidateQueries({
+			queryKey: ["timetableWeekItem"],
+		})
+	}, [])
+
 	return (
 		<View style={styles.container}>
-			<ScrollView>
+			<ScrollView
+				refreshControl={
+					<RefreshControl
+						refreshing={Boolean(fetching)}
+						onRefresh={refetchTimetable}
+					/>
+				}
+			>
 				<View style={styles.timetableSection}>
 					<TimesSection />
 					<CustomInfiniteViewPager
