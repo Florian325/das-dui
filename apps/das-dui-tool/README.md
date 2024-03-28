@@ -2,6 +2,10 @@
 
 Welcome to das-dui-tool! This repository hosts the native client application for the school communication platform Sdui. Built with React Native and Expo, das-dui-tool provides a rich and intuitive user experience for students, teachers, and parents. 📚📱
 
+## 🚨 Disclaimer
+
+**This is a community project. Neither it nor the author is affiliated with Sdui GmBH.**
+
 ## Overview ℹ️
 
 das-dui-tool is designed to simplify access to Sdui's features, offering a seamless interface for users to interact with. With features like notifications, news feeds, timetables, and more, das-dui-tool enhances communication and collaboration within the school community. 🚀📅📰
