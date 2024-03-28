@@ -3,12 +3,9 @@ import { Card, H4, Image } from "tamagui"
 import { NewsResponse } from "@das-dui/api-client"
 import { StyleSheet } from "react-native"
 
-type NewsListItemHeaderProps = Pick<NewsResponse.News, "title" | "preview">
+type NewsPostHeaderProps = Pick<NewsResponse.News, "title" | "preview">
 
-const NewsListItemHeader: FC<NewsListItemHeaderProps> = ({
-	title,
-	preview,
-}) => {
+const NewsPostHeader: FC<NewsPostHeaderProps> = ({ title, preview }) => {
 	return (
 		<>
 			{(title || preview) && (
@@ -36,4 +33,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default NewsListItemHeader
+export default NewsPostHeader

@@ -3,11 +3,9 @@ import { openBrowserAsync } from "expo-web-browser"
 import { FC } from "react"
 import { Card, ListItem, Separator, YGroup } from "tamagui"
 
-type NewsListItemAttachmentsProps = Pick<NewsResponse.News, "attachments">
+type NewsPostAttachmentsProps = Pick<NewsResponse.News, "attachments">
 
-const NewsListItemAttachments: FC<NewsListItemAttachmentsProps> = ({
-	attachments,
-}) => {
+const NewsPostAttachments: FC<NewsPostAttachmentsProps> = ({ attachments }) => {
 	return (
 		<>
 			{attachments.length > 0 && (
@@ -38,4 +36,4 @@ const NewsListItemAttachments: FC<NewsListItemAttachmentsProps> = ({
 	)
 }
 
-export default NewsListItemAttachments
+export default NewsPostAttachments
