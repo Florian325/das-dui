@@ -1,9 +1,9 @@
-import { Card } from "tamagui"
 import { NewsResponse } from "@das-dui/api-client"
 import { FC, memo } from "react"
-import NewsListItemHeader from "./NewsListItemHeader"
-import NewsListItemBody from "./NewsListItemBody"
-import NewsListItemAttachments from "./NewsListItemAttachment"
+import NewsPostContainer from "./news-post/NewsPostContainer"
+import NewsPostHeader from "./news-post/NewsPostHeader"
+import NewsPostBody from "./news-post/NewsPostBody"
+import NewsPostAttachments from "./news-post/NewsPostAttachments"
 
 interface NewsListItemProps {
 	item: NewsResponse.News
@@ -11,11 +11,11 @@ interface NewsListItemProps {
 
 const NewsListItem: FC<NewsListItemProps> = ({ item }) => {
 	return (
-		<Card marginVertical="$2" elevation={5}>
-			<NewsListItemHeader title={item.title} preview={item.preview} />
-			<NewsListItemBody content_rendered={item.content_rendered} />
-			<NewsListItemAttachments attachments={item.attachments} />
-		</Card>
+		<NewsPostContainer>
+			<NewsPostHeader title={item.title} preview={item.preview} />
+			<NewsPostBody content_rendered={item.content_rendered} />
+			<NewsPostAttachments attachments={item.attachments} />
+		</NewsPostContainer>
 	)
 }
 
