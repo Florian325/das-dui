@@ -10,7 +10,7 @@ const TimesSection = () => {
 	const client = useApiClient()
 
 	const { data } = useQuery({
-		queryKey: ["times"],
+		queryKey: ["timetableTimes"],
 		queryFn: client.getTimesCleanedUp,
 	})
 

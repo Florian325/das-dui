@@ -73,7 +73,7 @@ const DigitalClassbookRoot: FC<DigitalClassbookRootProps> = ({ lesson }) => {
 	const client = useApiClient()
 	const date = useDateFromSeconds(lesson.begins_at)
 	const { data, isLoading } = useQuery({
-		queryKey: ["classbook-entry", { lessonId: lesson.id }],
+		queryKey: ["classbookEntry", { lessonId: lesson.id }],
 		queryFn: async () =>
 			client
 				.getClassbookEntry({ lessonId: lesson.id, date: date })
