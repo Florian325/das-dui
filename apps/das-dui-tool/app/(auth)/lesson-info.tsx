@@ -75,7 +75,9 @@ const DigitalClassbookRoot: FC<DigitalClassbookRootProps> = ({ lesson }) => {
 	const { data, isLoading } = useQuery({
 		queryKey: ["classbook-entry", { lessonId: lesson.id }],
 		queryFn: async () =>
-			client.getClassbookEntry({ lessonId: lesson.id, date: date }),
+			client
+				.getClassbookEntry({ lessonId: lesson.id, date: date })
+				.then((response) => response.data),
 	})
 
 	return (
@@ -84,7 +86,7 @@ const DigitalClassbookRoot: FC<DigitalClassbookRootProps> = ({ lesson }) => {
 			{isLoading ? (
 				<Spinner />
 			) : data ? (
-				<DigitalClassbookSection classbookEntry={data} />
+				<DigitalClassbookSection classbookEntry={data.data} />
 			) : (
 				<Text>
 					There is no digital classbook entry for this lesson.
