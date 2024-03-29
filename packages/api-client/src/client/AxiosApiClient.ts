@@ -5,6 +5,8 @@ import {
 	LeadsResponse,
 	LoginResponse,
 	NewsResponse,
+	SurveyResponse,
+	SurveyVoteRequest,
 	TimetableResponse,
 	TimetableTimeResponse,
 	UserActivitySummaryResponse,
@@ -113,6 +115,13 @@ class AxiosApiClient {
 		return response
 	}
 
+	public getNewsById = async ({ newsId }: { newsId: number }) => {
+		const response = await this.instance.get<
+			BaseResponse<NewsResponse.News>
+		>(`channels/news/${newsId}`)
+		return response
+	}
+
 	private _getTimes = async () =>
 		await this.instance.get<
 			BaseResponse<TimetableTimeResponse.TimetableTime[]>
@@ -184,14 +193,32 @@ class AxiosApiClient {
 		const dateValue =
 			date instanceof Date ? date.toISOString().substring(0, 10) : date
 
-		const resp = await this.instance.get<
+		const response = await this.instance.get<
 			BaseResponse<ClassbookEntryResponse.ClassbookEntry>
 		>(`timetables/lessons/${lessonId}/classbook-entry`, {
 			params: {
 				date: dateValue,
 			},
 		})
-		return resp.data.data
+		return response
+	}
+
+	public getSurveyById = async ({ surveyId }: { surveyId: string }) => {
+		const response = await this.instance.get<
+			BaseResponse<SurveyResponse.Survey>
+		>(`channels/surveys/${surveyId}`)
+		return response
+	}
+
+	public postSurveyVote = async (
+		{ surveyId }: { surveyId: string },
+		vote: SurveyVoteRequest.Vote
+	) => {
+		const response = await this.instance.put<
+			BaseResponse<SurveyResponse.Survey>,
+			SurveyVoteRequest.Vote
+		>(`channels/surveys/${surveyId}/vote`, vote)
+		return response
 	}
 }
 
