@@ -57,6 +57,18 @@ export default function AuthAppLayout() {
 					),
 				}}
 			/>
+			<Tabs.Screen
+				name="debug"
+				options={{
+					title: "Debug",
+					tabBarIcon: ({ color }) => (
+						<TabBarIcon name="bug" color={color} />
+					),
+					...(process.env.NODE_ENV !== "development" && {
+						href: null,
+					}),
+				}}
+			/>
 			<Tabs.Screen name="index" options={{ href: null }} />
 		</Tabs>
 	)
