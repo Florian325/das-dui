@@ -9,7 +9,7 @@ const NewsPostAttachments: FC<NewsPostAttachmentsProps> = ({ attachments }) => {
 	return (
 		<>
 			{attachments.length > 0 && (
-				<Card.Footer style={{ padding: 20 }}>
+				<Card.Footer px="$4" py="$3">
 					<YGroup
 						bordered
 						width={"100%"}

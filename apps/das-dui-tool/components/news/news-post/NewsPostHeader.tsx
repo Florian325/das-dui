@@ -10,7 +10,7 @@ const NewsPostHeader: FC<NewsPostHeaderProps> = ({ title, preview }) => {
 		<>
 			{(title || preview) && (
 				<Card.Header>
-					{title && <H4 lineHeight={"$3"}>{title}</H4>}
+					{title && <H4>{title}</H4>}
 					{preview && (
 						<Image
 							source={{

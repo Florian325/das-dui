@@ -7,7 +7,7 @@ type NewsPostBodyProps = Pick<NewsResponse.News, "content_rendered">
 
 const NewsPostBody: FC<NewsPostBodyProps> = ({ content_rendered }) => {
 	return (
-		<View style={{ paddingHorizontal: 20 }}>
+		<View px="$4">
 			<NewsPostContent content={content_rendered} />
 		</View>
 	)
