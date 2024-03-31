@@ -12,7 +12,7 @@ const TimetableGrid: FC<TimetableGridProps> = ({ data }) => {
 
 	const timetableTimeStructure = queryClient.getQueryData<
 		TimetableTimeResponse.TimetableTime[] | null
-	>(["times"])
+	>(["timetableTimes"])
 
 	const timetableData = useMemo(() => {
 		const td: { [key: string]: TimetableResponse.Lesson[] } = {}
