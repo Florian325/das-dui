@@ -52,6 +52,7 @@ export default function AuthAppLayout() {
 				name="chats"
 				options={{
 					title: "Chats",
+					headerShown: false,
 					tabBarIcon: ({ color }) => (
 						<TabBarIcon name="comment" color={color} />
 					),

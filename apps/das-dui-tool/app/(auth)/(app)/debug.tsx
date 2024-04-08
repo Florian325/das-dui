@@ -1,3 +1,4 @@
+import { useSetAuthToken, useSetIsAuthenticated } from "@/context/auth"
 import { QueryFilters, useQueryClient } from "@tanstack/react-query"
 import { FC, ReactNode } from "react"
 import {
@@ -70,6 +71,9 @@ const DebugSection: FC<DebugSectionProps> = ({ title, children }) => {
 }
 
 function DebugPage() {
+	const setToken = useSetAuthToken()
+	const setIsAuth = useSetIsAuthenticated()
+	const queryClient = useQueryClient()
 	return (
 		<ScrollView>
 			<YStack flex={1} gap="$4" p="$4">
@@ -110,6 +114,35 @@ function DebugPage() {
 					<DebugMenuItem
 						filter={{ queryKey: ["self"], type: "all" }}
 					/>
+				</DebugSection>
+				<DebugSection title="Chats">
+					<DebugMenuItem
+						filter={{ queryKey: ["chats"], type: "all" }}
+					/>
+				</DebugSection>
+				<DebugSection title="Chat">
+					<DebugMenuItem
+						filter={{ queryKey: ["chat"], type: "all" }}
+					/>
+				</DebugSection>
+				<DebugSection title="Cloud Files">
+					<DebugMenuItem
+						filter={{ queryKey: ["cloud_files"], type: "all" }}
+					/>
+				</DebugSection>
+				<DebugSection title="Cloud File">
+					<DebugMenuItem
+						filter={{ queryKey: ["cloud_file"], type: "all" }}
+					/>
+				</DebugSection>
+				<DebugSection title="Logout">
+					<Button onPress={() => setIsAuth(false)}>
+						Set auth to false
+					</Button>
+					<Button onPress={() => setToken("")}>Clear Token</Button>
+				</DebugSection>
+				<DebugSection title="Clear cache">
+					<Button onPress={() => queryClient.clear()}>Clear</Button>
 				</DebugSection>
 			</YStack>
 		</ScrollView>
