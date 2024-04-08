@@ -1,7 +1,11 @@
 import axios, { AxiosInstance } from "axios"
 import {
 	BaseResponse,
+	ChatMemberResponse,
+	ChatMessagesResponse,
+	ChatsResponse,
 	ClassbookEntryResponse,
+	CloudResponse,
 	LeadsResponse,
 	LoginResponse,
 	NewsResponse,
@@ -218,6 +222,114 @@ class AxiosApiClient {
 			BaseResponse<SurveyResponse.Survey>,
 			SurveyVoteRequest.Vote
 		>(`channels/surveys/${surveyId}/vote`, vote)
+		return response
+	}
+
+	public getChats = async (
+		{
+			page,
+			search = "",
+			limit = 10,
+		}: {
+			page: number
+			search?: string
+			limit?: number
+		},
+		userId: number | string = "self"
+	) => {
+		const response = await this.instance.get<
+			BaseResponse<ChatsResponse.Chats[]>
+		>(`users/${userId}/channels/chats`, {
+			params: {
+				page,
+				search,
+				limit,
+			},
+		})
+		return response
+	}
+
+	getChatMessagesByPage = async ({
+		chatId,
+		page,
+	}: {
+		chatId: number
+		page: number
+	}) => {
+		const response = await this.instance.get<
+			BaseResponse<ChatMessagesResponse.ChatMessage[]>
+		>(`channels/chats/${chatId}/messages`, {
+			params: { page: page },
+		})
+		return response
+	}
+
+	getChatMemers = async ({
+		chatId,
+		page = 1,
+		search = "",
+	}: {
+		chatId: number
+		page?: number
+		search?: string
+	}) => {
+		const response = await this.instance.get<
+			BaseResponse<ChatMemberResponse.Member[]>
+		>(`channels/${chatId}/users`, {
+			params: { page, search },
+		})
+		return response
+	}
+
+	getCloudFiles = async ({
+		cloudId,
+		file,
+		path,
+		orderBy = "name",
+		orderDir = "asc",
+		fileType,
+		limit = 12,
+		page,
+		search,
+	}: {
+		cloudId: number
+		file?: string
+		path?: string
+		orderBy?: string
+		orderDir?: string
+		fileType?: string
+		limit?: number
+		page?: number
+		search?: string
+	}) => {
+		const response = await this.instance.get<
+			BaseResponse<CloudResponse.CloudFile[]>
+		>(`channels/cloud/${cloudId}/files`, {
+			params: {
+				file,
+				path,
+				"order-by": orderBy,
+				"order-dir": orderDir,
+				"file-type": fileType,
+				limit,
+				page,
+				search,
+			},
+		})
+		return response
+	}
+
+	getCloudFileById = async ({
+		cloudId,
+		fileId,
+	}: {
+		cloudId: number
+		fileId: string
+	}) => {
+		console.log("getCloudFileById", cloudId, fileId)
+		const response = await this.instance.get<
+			BaseResponse<CloudResponse.CloudFile>
+		>(`channels/cloud/${cloudId}/files/${fileId}`)
 		return response
 	}
 }
