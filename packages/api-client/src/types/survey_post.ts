@@ -1,5 +1,3 @@
-interface Vote {
+export interface Vote {
 	options: string[]
 }
-
-export type { Vote }

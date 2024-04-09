@@ -1,4 +1,4 @@
-interface Survey {
+export interface Survey {
 	can: {
 		view: number
 		vote: number
@@ -39,5 +39,3 @@ interface Survey {
 		type: string
 	}
 }
-
-export type { Survey }

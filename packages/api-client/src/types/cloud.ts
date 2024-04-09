@@ -1,4 +1,4 @@
-interface CloudFileMeta {
+export interface CloudFileMeta {
 	subtitle: string
 	absolute_path: string
 	location: Location
@@ -20,7 +20,7 @@ interface CloudFileMeta {
 	username: string
 }
 
-interface CloudFile {
+export interface CloudFile {
 	user_id: number
 	meta: CloudFileMeta
 	parent: CloudFile | null
@@ -56,16 +56,14 @@ interface CloudFile {
 	cloud: Cloud
 }
 
-interface Cloud {
+export interface Cloud {
 	id: number
 	disabled_at: null
 	updated_at: Date
 }
 
-interface User {
+export interface User {
 	id: number
 	school_id: number
 	type: string
 }
-
-export type { CloudFile, CloudFileMeta, Cloud, User }

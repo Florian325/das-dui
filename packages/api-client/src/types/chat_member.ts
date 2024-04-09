@@ -1,6 +1,6 @@
 import { UserResponse } from "."
 
-interface Member {
+export interface Member {
 	method: string
 	is_admin: number
 	color: string
@@ -21,12 +21,12 @@ interface Member {
 	meta: MemberMeta
 }
 
-interface MemberCan {
+export interface MemberCan {
 	message: number
 	view: number
 }
 
-interface Grade
+export interface Grade
 	extends Pick<
 		UserResponse.Grade,
 		| "id"
@@ -42,11 +42,11 @@ interface Grade
 	meta: GradeMeta
 }
 
-interface GradeMeta {
+export interface GradeMeta {
 	displayname: string
 }
 
-interface MemberMeta {
+export interface MemberMeta {
 	displayname: string
 	subtitle: string
 	type: string
@@ -60,7 +60,7 @@ interface MemberMeta {
 	is_trackable_classbook_user?: boolean
 }
 
-interface ShortcutClass {
+export interface ShortcutClass {
 	id: number
 	school_id: number
 	shortcut: string
@@ -68,5 +68,3 @@ interface ShortcutClass {
 	description: null
 	meta: GradeMeta
 }
-
-export type { Member, Grade, MemberMeta, ShortcutClass, GradeMeta, MemberCan }

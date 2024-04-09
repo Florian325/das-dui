@@ -1,4 +1,4 @@
-interface ActivitySummary {
+export interface ActivitySummary {
 	chat: {
 		unread_count: number
 	}
@@ -6,5 +6,3 @@ interface ActivitySummary {
 		unread_count: number
 	}
 }
-
-export type { ActivitySummary }

@@ -1,4 +1,4 @@
-interface Lead {
+export interface Lead {
 	id: number
 	name: string
 	name_alias: string
@@ -27,5 +27,3 @@ interface Lead {
 	pipedrive_id: number
 	hubspot_id: string
 }
-
-export type { Lead }
