@@ -22,8 +22,20 @@ const NewsListItem: FC<NewsListItemProps> = ({ item }) => {
 }
 
 export default memo(NewsListItem, (prevProps, nextProps) => {
+	const attachmentsChanged = Boolean(
+		prevProps.item.attachments.filter(
+			(a, index) =>
+				a.meta.download_uri ===
+					nextProps.item.attachments[index].meta.download_uri &&
+				a.meta.temp_uri ===
+					nextProps.item.attachments[index].meta.temp_uri &&
+				a.meta.uri === nextProps.item.attachments[index].meta.uri
+		).length !== prevProps.item.attachments.length
+	)
+
 	return (
 		prevProps.item.id === nextProps.item.id &&
-		prevProps.item.updated_at === nextProps.item.updated_at
+		prevProps.item.updated_at === nextProps.item.updated_at &&
+		!attachmentsChanged
 	)
 })
