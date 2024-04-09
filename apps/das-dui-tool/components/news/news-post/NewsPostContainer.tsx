@@ -1,5 +1,6 @@
-import { Card } from "tamagui"
 import { FC, ReactNode } from "react"
+
+import { Card } from "tamagui"
 
 interface NewsPostContainerProps {
 	children: ReactNode

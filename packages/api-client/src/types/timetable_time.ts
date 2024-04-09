@@ -1,4 +1,4 @@
-interface TimetableTime {
+export interface TimetableTime {
 	meta: {
 		displayname: string
 	}
@@ -11,5 +11,3 @@ interface TimetableTime {
 	description: null | string
 	is_hidden: boolean
 }
-
-export type { TimetableTime }

@@ -1,8 +1,11 @@
-import { Button, ListItem, Spinner } from "tamagui"
-import * as Calendar from "expo-calendar"
 import { useState } from "react"
-import useTimetableOffsetRange from "@/hooks/useTimetableOffsetRange"
+
+import * as Calendar from "expo-calendar"
+
+import { Button, ListItem, Spinner } from "tamagui"
+
 import useApiClient from "@/hooks/useApiClient"
+import useTimetableOffsetRange from "@/hooks/useTimetableOffsetRange"
 
 const CalendarSyncView = () => {
 	// const [calendarPermission, setCalendarPermission] = useState(false)

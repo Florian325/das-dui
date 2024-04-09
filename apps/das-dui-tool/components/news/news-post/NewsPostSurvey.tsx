@@ -1,4 +1,9 @@
 import { FC, useEffect, useState } from "react"
+
+import { FontAwesome } from "@expo/vector-icons"
+
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+
 import {
 	Button,
 	H5,
@@ -12,12 +17,11 @@ import {
 	YStack,
 	useTheme,
 } from "tamagui"
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { FontAwesome } from "@expo/vector-icons"
+
+import { SurveyResponse, SurveyVoteRequest } from "@das-dui/api-client"
 
 import GenericIcon from "@/components/ui/GenericIcon"
 import useApiClient from "@/hooks/useApiClient"
-import { SurveyResponse, SurveyVoteRequest } from "@das-dui/api-client"
 
 interface NewsPostSurveyProps {
 	survey?: SurveyResponse.Survey

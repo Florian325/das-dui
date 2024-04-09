@@ -1,5 +1,6 @@
-import { BaseResponseMeta } from "@das-dui/api-client"
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai"
+
+import { BaseResponseMeta } from "@das-dui/api-client"
 
 const responseInformation = atom<BaseResponseMeta>({
 	warnings: [],

@@ -1,9 +1,12 @@
-import useDateFromSeconds from "@/hooks/useDateFromSeconds"
-import useTimeDifferenceHeight from "@/hooks/useTimeDifferenceHeight"
-import { TimetableTimeResponse } from "@das-dui/api-client"
 import { FC } from "react"
 import { StyleSheet } from "react-native"
+
 import { Text, View } from "tamagui"
+
+import { TimetableTimeResponse } from "@das-dui/api-client"
+
+import useDateFromSeconds from "@/hooks/useDateFromSeconds"
+import useTimeDifferenceHeight from "@/hooks/useTimeDifferenceHeight"
 
 interface TimeSectionItemProps {
 	item: TimetableTimeResponse.TimetableTime

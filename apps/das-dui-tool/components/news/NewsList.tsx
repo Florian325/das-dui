@@ -1,7 +1,10 @@
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query"
+
 import { Text } from "tamagui"
-import NewsListItem from "./NewsListItem"
+
 import { FlashList } from "@shopify/flash-list"
+
+import NewsListItem from "@/components/news/NewsListItem"
 import useApiClient from "@/hooks/useApiClient"
 
 const NewsList = () => {

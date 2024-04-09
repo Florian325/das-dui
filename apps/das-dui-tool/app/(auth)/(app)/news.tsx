@@ -1,6 +1,8 @@
-import NewsList from "@/components/news/NewsList"
 import { StyleSheet } from "react-native"
+
 import { View } from "tamagui"
+
+import NewsList from "@/components/news/NewsList"
 
 export default function NewsView() {
 	return (

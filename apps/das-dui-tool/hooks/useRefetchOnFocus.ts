@@ -1,5 +1,6 @@
-import { useFocusEffect } from "expo-router"
 import { useCallback, useRef } from "react"
+
+import { useFocusEffect } from "expo-router"
 
 export function useRefreshOnFocus<T>(refetch: () => Promise<T>) {
 	const firstTimeRef = useRef(true)

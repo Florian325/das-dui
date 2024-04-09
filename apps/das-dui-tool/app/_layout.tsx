@@ -1,24 +1,26 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome"
-import {
-	DarkTheme,
-	DefaultTheme,
-	ThemeProvider,
-} from "@react-navigation/native"
-import { useFonts } from "expo-font"
-import { Slot } from "expo-router"
-import * as SplashScreen from "expo-splash-screen"
 import { useEffect } from "react"
-
-import { TamaguiProvider, Theme, useTheme } from "tamagui"
-
-import appConfig from "../tamagui.config"
 import { Platform, useColorScheme } from "react-native"
 import {
 	RenderHTMLConfigProvider,
 	TRenderEngineProvider,
 } from "react-native-render-html"
-import * as ScreenOrientation from "expo-screen-orientation"
+
+import FontAwesome from "@expo/vector-icons/FontAwesome"
+import { useFonts } from "expo-font"
 import * as NavigationBar from "expo-navigation-bar"
+import { Slot } from "expo-router"
+import * as ScreenOrientation from "expo-screen-orientation"
+import * as SplashScreen from "expo-splash-screen"
+
+import { TamaguiProvider, Theme, useTheme } from "tamagui"
+
+import {
+	DarkTheme,
+	DefaultTheme,
+	ThemeProvider,
+} from "@react-navigation/native"
+
+import appConfig from "@/tamagui.config"
 
 export {
 	// Catch any errors thrown by the Layout component.

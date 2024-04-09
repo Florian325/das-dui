@@ -1,8 +1,12 @@
-import { useGetIsAuthenticated } from "@/context/auth"
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { Redirect, Stack } from "expo-router"
 import { ReactNode } from "react"
+
+import { Redirect, Stack } from "expo-router"
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+
 import { H2, useTheme } from "tamagui"
+
+import { useGetIsAuthenticated } from "@/context/auth"
 
 const queryClient = new QueryClient()
 

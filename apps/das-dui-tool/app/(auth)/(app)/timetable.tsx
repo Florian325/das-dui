@@ -1,10 +1,13 @@
-import TimesSection from "@/components/timetable/TimesSection"
+import { useCallback } from "react"
 import { RefreshControl, StyleSheet } from "react-native"
+
+import { useIsFetching, useQueryClient } from "@tanstack/react-query"
+
 import { ScrollView, View } from "tamagui"
+
+import TimesSection from "@/components/timetable/TimesSection"
 import TimetablePageView from "@/components/timetable/TimetablePage"
 import CustomInfiniteViewPager from "@/lib/CustomInfiniteViewPager"
-import { useIsFetching, useQueryClient } from "@tanstack/react-query"
-import { useCallback } from "react"
 
 export default function TimetableView() {
 	const queryClient = useQueryClient()

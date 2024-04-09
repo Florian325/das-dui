@@ -1,12 +1,16 @@
-import useApiClient from "@/hooks/useApiClient"
-import { FlashList } from "@shopify/flash-list"
-import { useInfiniteQuery } from "@tanstack/react-query"
-import { Stack, useLocalSearchParams } from "expo-router"
 import { useState } from "react"
+
+import { Stack, useLocalSearchParams } from "expo-router"
+
+import { useInfiniteQuery } from "@tanstack/react-query"
+
 import { H5, ListItem, Spinner, View, useTheme } from "tamagui"
+
+import { FlashList } from "@shopify/flash-list"
 
 import GenericIcon from "@/components/ui/GenericIcon"
 import InputBar from "@/components/ui/InputBar"
+import useApiClient from "@/hooks/useApiClient"
 
 export default function CloudPage() {
 	const { id } = useLocalSearchParams<{ id: string }>()

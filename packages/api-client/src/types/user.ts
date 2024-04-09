@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-interface SchoolType {
+export interface SchoolType {
 	key: string
 	name: string
 	level: string
 }
 
-interface Schoolyear {
+export interface Schoolyear {
 	id: number
 	timetable_id: number
 	key: string
@@ -31,7 +31,7 @@ interface Schoolyear {
 	}
 }
 
-interface School {
+export interface School {
 	id: number
 	name: string
 	name_alias: string
@@ -76,11 +76,11 @@ interface School {
 	}
 }
 
-interface UserProperties {
+export interface UserProperties {
 	[key: string]: string | number | boolean | null
 }
 
-interface ParentPivot {
+export interface ParentPivot {
 	user_id: number
 	parent_id: number
 	relation: string
@@ -88,7 +88,7 @@ interface ParentPivot {
 	is_accessable: number
 }
 
-interface Grade {
+export interface Grade {
 	id: number
 	shortcut: string
 	school_id: number
@@ -106,7 +106,7 @@ interface Grade {
 	migrate_at?: string
 }
 
-interface UserRole {
+export interface UserRole {
 	updated_at: string
 	created_at: string
 	id: number
@@ -115,7 +115,7 @@ interface UserRole {
 	description: string
 }
 
-interface UserPrimaryRole {
+export interface UserPrimaryRole {
 	translated_description: string
 	updated_at: string
 	created_at: string
@@ -125,7 +125,7 @@ interface UserPrimaryRole {
 	description: string
 }
 
-interface UserMeta {
+export interface UserMeta {
 	displayname: string
 	subtitle: string
 	type: string
@@ -141,7 +141,7 @@ interface UserMeta {
 	is_trackable_classbook_user: boolean
 }
 
-interface User {
+export interface User {
 	data: {
 		uuid: string
 		firstname: string
@@ -182,17 +182,4 @@ interface User {
 	registered_at: string
 	confirmed_at?: string
 	phone?: string
-}
-
-export type {
-	SchoolType,
-	Schoolyear,
-	School,
-	UserProperties,
-	ParentPivot,
-	Grade,
-	UserRole,
-	UserPrimaryRole,
-	UserMeta,
-	User,
 }

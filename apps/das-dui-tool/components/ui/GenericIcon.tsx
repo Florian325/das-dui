@@ -1,6 +1,7 @@
-import { FontAwesome } from "@expo/vector-icons"
 import { Component, forwardRef } from "react"
 import { useColorScheme } from "react-native"
+
+import { FontAwesome } from "@expo/vector-icons"
 
 interface GenericIconProps extends React.ComponentProps<typeof FontAwesome> {}
 

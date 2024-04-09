@@ -1,10 +1,14 @@
-import { FlashList } from "@shopify/flash-list"
-import { useInfiniteQuery } from "@tanstack/react-query"
-import { Link, Stack, useLocalSearchParams } from "expo-router"
 import { useState } from "react"
 import { TouchableOpacity } from "react-native"
-import { H6, ListItem, Spinner, View, useTheme } from "tamagui"
+
+import { Link, Stack, useLocalSearchParams } from "expo-router"
 import * as WebBrowser from "expo-web-browser"
+
+import { useInfiniteQuery } from "@tanstack/react-query"
+
+import { H6, ListItem, Spinner, View, useTheme } from "tamagui"
+
+import { FlashList } from "@shopify/flash-list"
 
 import GenericIcon from "@/components/ui/GenericIcon"
 import InputBar from "@/components/ui/InputBar"

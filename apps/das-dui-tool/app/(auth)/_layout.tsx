@@ -1,19 +1,23 @@
-import { useGetIsAuthenticated } from "@/context/auth"
-import { Redirect, Stack } from "expo-router"
-import { H3, useTheme } from "tamagui"
 import { FC, ReactNode } from "react"
+
+import { Redirect, Stack } from "expo-router"
+
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import NetInfo from "@react-native-community/netinfo"
+
+import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister"
 import {
 	QueryClient,
 	onlineManager,
 	useQueryClient,
 } from "@tanstack/react-query"
-import NetInfo from "@react-native-community/netinfo"
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client"
-import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister"
-import AsyncStorage from "@react-native-async-storage/async-storage"
 
-import { useSelectedUserId, useUserId } from "@/context/userId"
+import { H3, useTheme } from "tamagui"
+
 import { View } from "@/components/Themed"
+import { useGetIsAuthenticated } from "@/context/auth"
+import { useSelectedUserId, useUserId } from "@/context/userId"
 import useApiClient from "@/hooks/useApiClient"
 
 onlineManager.setEventListener((setOnline) => {

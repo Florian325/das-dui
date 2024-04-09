@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-interface Chats {
+export interface Chats {
 	meta: ChatsMeta
 	can: { [key: string]: number }
 	code: string
@@ -43,7 +43,7 @@ interface Chats {
 	school: School
 }
 
-interface Chat {
+export interface Chat {
 	meta: any[]
 	can: ChatCan
 	id: number
@@ -51,12 +51,12 @@ interface Chat {
 	updated_at: Date
 }
 
-interface ChatCan {
+export interface ChatCan {
 	"post-message": number
 	"toggle-oneway": number
 }
 
-interface Cloud {
+export interface Cloud {
 	meta: CloudMeta
 	can: CloudCan
 	id: number
@@ -64,12 +64,12 @@ interface Cloud {
 	updated_at: Date
 }
 
-interface CloudCan {
+export interface CloudCan {
 	upload: number
 	"create-protected-folder": number
 }
 
-interface CloudMeta {
+export interface CloudMeta {
 	download: null
 	upload: string
 	rename: string
@@ -97,7 +97,7 @@ enum Forbidden {
 	Scr = "scr",
 }
 
-interface ChatsMeta {
+export interface ChatsMeta {
 	last_unread_count: number
 	is_official: boolean
 	is_muted: boolean
@@ -118,9 +118,9 @@ interface ChatsMeta {
 	user_id?: number
 }
 
-interface NextPossibleKnockAt {}
+export interface NextPossibleKnockAt {}
 
-interface Pivot {
+export interface Pivot {
 	user_id: number
 	channel_id: number
 	color: string
@@ -128,7 +128,7 @@ interface Pivot {
 	last_activity_at: null
 }
 
-interface School {
+export interface School {
 	id: number
 	name: string
 	name_alias: string
@@ -147,22 +147,8 @@ interface School {
 	type: SchoolType
 }
 
-interface SchoolType {
+export interface SchoolType {
 	key: string
 	name: string
 	level: string
-}
-
-export type {
-	Chats,
-	Chat,
-	ChatCan,
-	Cloud,
-	CloudCan,
-	CloudMeta,
-	ChatsMeta,
-	Forbidden,
-	Pivot,
-	School,
-	SchoolType,
 }

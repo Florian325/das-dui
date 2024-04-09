@@ -1,7 +1,10 @@
-import { NewsResponse } from "@das-dui/api-client"
-import { openBrowserAsync } from "expo-web-browser"
 import { FC } from "react"
+
+import { openBrowserAsync } from "expo-web-browser"
+
 import { Card, ListItem, Separator, YGroup } from "tamagui"
+
+import { NewsResponse } from "@das-dui/api-client"
 
 type NewsPostAttachmentsProps = Pick<NewsResponse.News, "attachments">
 

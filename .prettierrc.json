@@ -4,5 +4,19 @@
 	"tabWidth": 4,
 	"useTabs": true,
 	"semi": false,
-	"singleQuote": false
+	"singleQuote": false,
+	"plugins": ["@trivago/prettier-plugin-sort-imports"],
+	"importOrder": [
+		"^react",
+		"^(expo|@expo)",
+		"^@react-native",
+		"^@tanstack",
+		"^tamagui",
+		"<THIRD_PARTY_MODULES>",
+		"^@das-dui/(.*)$",
+		"^@/(.*)$",
+		"^[./]"
+	],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
 }

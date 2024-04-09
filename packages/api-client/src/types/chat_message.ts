@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { News } from "./news"
 
-interface ChatMessagePreview {
+export interface ChatMessagePreview {
 	title?: string
 	description?: string
 	link?: string
 	type: "link" | string
 }
 
-interface ChatMessage {
+export interface ChatMessage {
 	payload: null
 	created_at: Date
 	updated_at: Date
@@ -36,14 +35,14 @@ interface ChatMessage {
 	deleted_at: null
 }
 
-interface ChatMessageCan {
+export interface ChatMessageCan {
 	update: number
 	translate: number
 	"view-readers-list": number
 	delete: number
 }
 
-interface FileMeta {
+export interface FileMeta {
 	subtitle: string
 	absolute_path: string
 	location: Location
@@ -65,7 +64,7 @@ interface FileMeta {
 	username: null | string
 }
 
-interface File {
+export interface File {
 	user_id: number | null
 	meta: FileMeta
 	can: FileCan
@@ -103,7 +102,7 @@ interface File {
 	messages: FileMessage[]
 }
 
-interface FileCan {
+export interface FileCan {
 	copy: number
 	upload: number
 	delete: number
@@ -114,13 +113,13 @@ interface FileCan {
 	move: number
 }
 
-interface Cloud {
+export interface Cloud {
 	id: number
 	disabled_at: null
 	updated_at: Date
 }
 
-interface FileMessage {
+export interface FileMessage {
 	uuid: string
 	chat_id: number
 	original_uuid: null
@@ -134,13 +133,13 @@ interface FileMessage {
 	deleted_at: null
 }
 
-interface FileUser {
+export interface FileUser {
 	id: number
 	school_id: number
 	type: string
 }
 
-interface User {
+export interface User {
 	id: number
 	school_id: number
 	type: string
@@ -155,7 +154,7 @@ interface User {
 	meta: UserMeta
 }
 
-interface Grade {
+export interface Grade {
 	id: number
 	school_id: number
 	shortcut: string
@@ -167,11 +166,11 @@ interface Grade {
 	migrate_at: null
 	meta: GradeMeta
 }
-interface GradeMeta {
+export interface GradeMeta {
 	displayname: string
 }
 
-interface UserMeta {
+export interface UserMeta {
 	displayname: string
 	subtitle: string
 	type: string
@@ -183,28 +182,11 @@ interface UserMeta {
 	deleted_at: null
 }
 
-interface ShortcutClass {
+export interface ShortcutClass {
 	id: number
 	school_id: number
 	shortcut: string
 	name: string
 	description: null
 	meta: GradeMeta
-}
-
-export type {
-	ChatMessage,
-	ChatMessageCan,
-	ChatMessagePreview,
-	File,
-	FileMessage,
-	FileCan,
-	FileMeta,
-	FileUser,
-	User,
-	UserMeta,
-	Grade,
-	GradeMeta,
-	ShortcutClass,
-	Cloud,
 }

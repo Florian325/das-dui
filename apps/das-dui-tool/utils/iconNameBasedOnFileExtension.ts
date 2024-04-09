@@ -1,5 +1,6 @@
-import { FontAwesome } from "@expo/vector-icons"
 import { ComponentProps } from "react"
+
+import { FontAwesome } from "@expo/vector-icons"
 
 export const iconNameBasedOnFileExtension = (
 	extension?: string | null

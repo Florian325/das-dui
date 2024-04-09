@@ -1,7 +1,9 @@
+import axios, { AxiosError, AxiosResponse } from "axios"
+
+import { BaseResponse } from "@das-dui/api-client"
+
 import { useAuthToken } from "@/context/auth"
 import { useSetResponseInformation } from "@/context/responseInformation"
-import { BaseResponse } from "@das-dui/api-client"
-import axios, { AxiosError, AxiosResponse } from "axios"
 
 const useAxiosInstance = () => {
 	const setResponseInformation = useSetResponseInformation()

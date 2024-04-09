@@ -1,6 +1,8 @@
-import { Text, View } from "tamagui"
-import useTimetableWeekDayArray from "@/hooks/useTimetableWeekDayArray"
 import { StyleSheet } from "react-native"
+
+import { Text, View } from "tamagui"
+
+import useTimetableWeekDayArray from "@/hooks/useTimetableWeekDayArray"
 
 interface WeekDayBarProps {
 	offset: number

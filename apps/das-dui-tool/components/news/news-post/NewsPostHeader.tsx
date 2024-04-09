@@ -1,7 +1,9 @@
 import { FC } from "react"
-import { Card, H4, Image } from "tamagui"
-import { NewsResponse } from "@das-dui/api-client"
 import { StyleSheet } from "react-native"
+
+import { Card, H4, Image } from "tamagui"
+
+import { NewsResponse } from "@das-dui/api-client"
 
 type NewsPostHeaderProps = Pick<NewsResponse.News, "title" | "preview">
 

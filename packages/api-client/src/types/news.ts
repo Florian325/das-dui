@@ -1,6 +1,6 @@
 import { Survey } from "./survey"
 
-interface User {
+export interface User {
 	id: number
 	school_id: number
 	type: string
@@ -34,7 +34,7 @@ interface User {
 	}
 }
 
-interface Channel {
+export interface Channel {
 	meta: {
 		is_official: number
 		subtitle: string
@@ -101,7 +101,7 @@ interface Channel {
 	}
 }
 
-interface Attachment {
+export interface Attachment {
 	id: number
 	uuid: string
 	user_id: number
@@ -121,7 +121,7 @@ interface Attachment {
 	}
 }
 
-interface Preview {
+export interface Preview {
 	id: number
 	uuid: string
 	user_id: number
@@ -141,7 +141,7 @@ interface Preview {
 	}
 }
 
-interface Meta {
+export interface Meta {
 	uri: string
 	confirm_uri: boolean
 	is_confirmed: boolean
@@ -160,7 +160,7 @@ interface Meta {
 	}
 }
 
-interface Can {
+export interface Can {
 	update: number
 	"view-statistics": number
 	confirm: number
@@ -169,16 +169,16 @@ interface Can {
 	pin: number
 }
 
-interface ChannelPivot {
+export interface ChannelPivot {
 	news_id: number
 	channel_id: number
 }
 
-interface NewsMeta {
+export interface NewsMeta {
 	userMeta: Meta
 }
 
-interface News {
+export interface News {
 	id: number
 	title: string
 	content: string
@@ -201,15 +201,4 @@ interface News {
 	preview: Preview
 	meta: NewsMeta
 	can: Can
-}
-
-export type {
-	News,
-	User,
-	Channel,
-	Attachment,
-	Preview,
-	Meta,
-	Can,
-	ChannelPivot,
 }
