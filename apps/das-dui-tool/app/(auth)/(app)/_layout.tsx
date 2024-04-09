@@ -1,7 +1,10 @@
-import TabBarIcon from "@/components/ui/TabBarIcon"
-import { Tabs } from "expo-router"
 import { ReactNode } from "react"
+
+import { Tabs } from "expo-router"
+
 import { H2, useTheme } from "tamagui"
+
+import TabBarIcon from "@/components/ui/TabBarIcon"
 
 export default function AuthAppLayout() {
 	const theme = useTheme()

@@ -1,9 +1,12 @@
-import { useQuery } from "@tanstack/react-query"
-import { StyleSheet } from "react-native"
-import { View } from "tamagui"
-import TimeSectionItem from "./TimeSectionItem"
-import TimetableTopBarContainer from "./TimetableTopBarContainer"
 import { memo } from "react"
+import { StyleSheet } from "react-native"
+
+import { useQuery } from "@tanstack/react-query"
+
+import { View } from "tamagui"
+
+import TimeSectionItem from "@/components/timetable/TimeSectionItem"
+import TimetableTopBarContainer from "@/components/timetable/TimetableTopBarContainer"
 import useApiClient from "@/hooks/useApiClient"
 
 const TimesSection = () => {

@@ -1,5 +1,4 @@
 // import { config } from "@tamagui/config/v3"
-
 // import { createTamagui } from "tamagui"
 // export const tamaguiConfig = createTamagui(config)
 // export default tamaguiConfig
@@ -7,10 +6,11 @@
 // declare module "tamagui" {
 // 	interface TamaguiCustomConfig extends Conf {}
 // }
+import { createTamagui } from "tamagui"
 
 import { config } from "@tamagui/config/v3"
 
-import { createTamagui } from "tamagui" // or '@tamagui/core'
+// or '@tamagui/core'
 const appConfig = createTamagui(config)
 export type AppConfig = typeof appConfig
 declare module "tamagui" {

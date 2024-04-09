@@ -1,4 +1,5 @@
 import { ComponentProps, FC, ReactNode } from "react"
+
 import { Button, Input, XStack } from "tamagui"
 
 interface InputBarProps {

@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import AsyncStorage from "@react-native-async-storage/async-storage"
+
+import { InfiniteData } from "@tanstack/react-query"
+
+import { AxiosResponse } from "axios"
+import { useAtom, useAtomValue, useSetAtom } from "jotai"
+import { atomWithStorage, createJSONStorage } from "jotai/utils"
 
 import {
 	BaseResponse,
 	TimetableResponse,
 	TimetableTimeResponse,
 } from "@das-dui/api-client"
-import AsyncStorage from "@react-native-async-storage/async-storage"
-import { InfiniteData } from "@tanstack/react-query"
-import { AxiosResponse } from "axios"
-import { useAtom, useAtomValue, useSetAtom } from "jotai"
-import { atomWithStorage, createJSONStorage } from "jotai/utils"
 
 const timetableTimeStructureStorage = createJSONStorage<
 	TimetableTimeResponse.TimetableTime[] | null

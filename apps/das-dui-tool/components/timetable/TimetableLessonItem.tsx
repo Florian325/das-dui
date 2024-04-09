@@ -1,9 +1,13 @@
-import { useSetLessonInfo } from "@/context/lesson-info"
-import { TimetableResponse } from "@das-dui/api-client"
-import { Link } from "expo-router"
 import { FC } from "react"
 import { StyleSheet } from "react-native"
+
+import { Link } from "expo-router"
+
 import { Card, SizableText, ThemeName } from "tamagui"
+
+import { TimetableResponse } from "@das-dui/api-client"
+
+import { useSetLessonInfo } from "@/context/lesson-info"
 
 interface TimetableLessonItemProps {
 	lesson: TimetableResponse.Lesson

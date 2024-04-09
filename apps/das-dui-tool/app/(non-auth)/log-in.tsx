@@ -1,12 +1,17 @@
+import { useState } from "react"
+import { StyleSheet } from "react-native"
+
+import { router, useLocalSearchParams } from "expo-router"
+
+import { useMutation } from "@tanstack/react-query"
+
+import { Button, Form, H3, Input, Label, Spinner, View, YStack } from "tamagui"
+
+import { BaseResponse, LoginResponse } from "@das-dui/api-client"
+
 import ResponseInformation from "@/components/ui/ResponseInformation"
 import { useSetAuthToken, useSetIsAuthenticated } from "@/context/auth"
 import useAxiosInstance from "@/hooks/useAxiosInstance"
-import { BaseResponse, LoginResponse } from "@das-dui/api-client"
-import { useMutation } from "@tanstack/react-query"
-import { router, useLocalSearchParams } from "expo-router"
-import { useState } from "react"
-import { StyleSheet } from "react-native"
-import { Button, Form, H3, Input, Label, Spinner, View, YStack } from "tamagui"
 
 export default function LogInScreen() {
 	const { slink, name } = useLocalSearchParams<{

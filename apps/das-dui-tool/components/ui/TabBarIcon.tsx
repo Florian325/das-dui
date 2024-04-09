@@ -1,5 +1,6 @@
-import { FontAwesome } from "@expo/vector-icons"
 import { FC } from "react"
+
+import { FontAwesome } from "@expo/vector-icons"
 
 interface TabBarIconProps {
 	name: React.ComponentProps<typeof FontAwesome>["name"]

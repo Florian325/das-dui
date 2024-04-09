@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { News } from "./news"
 
 interface ChatMessagePreview {

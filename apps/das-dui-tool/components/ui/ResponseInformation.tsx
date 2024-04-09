@@ -1,5 +1,6 @@
-import { useGetResponseInformation } from "@/context/responseInformation"
 import { Text, YStack } from "tamagui"
+
+import { useGetResponseInformation } from "@/context/responseInformation"
 
 const ResponseInformation = () => {
 	const responseInformation = useGetResponseInformation()

@@ -1,5 +1,6 @@
-import useAxiosInstance from "./useAxiosInstance"
 import { AxiosApiClient } from "@das-dui/api-client"
+
+import useAxiosInstance from "@/hooks/useAxiosInstance"
 
 const useApiClient = () => {
 	const instance = useAxiosInstance()

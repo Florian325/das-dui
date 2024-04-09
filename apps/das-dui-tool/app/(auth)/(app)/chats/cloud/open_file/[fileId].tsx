@@ -1,9 +1,12 @@
-import { useQuery } from "@tanstack/react-query"
-import { Stack, useLocalSearchParams } from "expo-router"
-import WebView from "react-native-webview"
-import { Spinner, Text } from "tamagui"
-import * as WebBrowser from "expo-web-browser"
 import { TouchableOpacity } from "react-native"
+import WebView from "react-native-webview"
+
+import { Stack, useLocalSearchParams } from "expo-router"
+import * as WebBrowser from "expo-web-browser"
+
+import { useQuery } from "@tanstack/react-query"
+
+import { Spinner, Text } from "tamagui"
 
 import GenericIcon from "@/components/ui/GenericIcon"
 import useApiClient from "@/hooks/useApiClient"

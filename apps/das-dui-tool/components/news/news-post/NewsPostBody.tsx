@@ -1,7 +1,10 @@
-import { View } from "tamagui"
-import NewsPostContent from "./NewsPostContent"
-import { NewsResponse } from "@das-dui/api-client"
 import { FC } from "react"
+
+import { View } from "tamagui"
+
+import { NewsResponse } from "@das-dui/api-client"
+
+import NewsPostContent from "@/components/news/news-post/NewsPostContent"
 
 type NewsPostBodyProps = Pick<NewsResponse.News, "content_rendered">
 

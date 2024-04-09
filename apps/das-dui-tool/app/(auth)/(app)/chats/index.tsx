@@ -1,12 +1,17 @@
+import { useState } from "react"
+
+import { Link, Stack } from "expo-router"
+
+import { useInfiniteQuery } from "@tanstack/react-query"
+
+import { Group, H5, Spinner, Text, XStack, YStack } from "tamagui"
+
+import { FlashList } from "@shopify/flash-list"
+
 import GenericIcon from "@/components/ui/GenericIcon"
 import InputBar from "@/components/ui/InputBar"
 import useApiClient from "@/hooks/useApiClient"
 import createPreviewFromText from "@/lib/createPreviewFromText"
-import { FlashList } from "@shopify/flash-list"
-import { useInfiniteQuery } from "@tanstack/react-query"
-import { Link, Stack } from "expo-router"
-import { useState } from "react"
-import { Group, H5, Spinner, Text, XStack, YStack } from "tamagui"
 
 export default function ChatView() {
 	const [searchQuery, setSearchQuery] = useState<string>("")

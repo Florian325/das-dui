@@ -1,13 +1,16 @@
-import { Spinner, Text, View } from "tamagui"
 import { FC, memo } from "react"
-import { useQuery } from "@tanstack/react-query"
-import useTimetableWeekRange from "@/hooks/useTimetableWeekRange"
 import { StyleSheet } from "react-native"
-import TimetableTopBarContainer from "./TimetableTopBarContainer"
-import WeekDayBar from "./WeekDayBar"
+
+import { useQuery } from "@tanstack/react-query"
+
+import { Spinner, Text, View } from "tamagui"
+
+import TimetableGrid from "@/components/timetable/TimetableGrid"
+import TimetableTopBarContainer from "@/components/timetable/TimetableTopBarContainer"
+import WeekDayBar from "@/components/timetable/WeekDayBar"
 import { useGetSelectedUserId } from "@/context/userId"
 import useApiClient from "@/hooks/useApiClient"
-import TimetableGrid from "./TimetableGrid"
+import useTimetableWeekRange from "@/hooks/useTimetableWeekRange"
 
 interface TimetablePageProps {
 	index: number

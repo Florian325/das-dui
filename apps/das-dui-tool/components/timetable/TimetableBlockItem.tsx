@@ -1,10 +1,13 @@
+import { FC } from "react"
+import { StyleSheet } from "react-native"
+
+import { View } from "tamagui"
+
+import { TimetableResponse, TimetableTimeResponse } from "@das-dui/api-client"
+
+import TimetableLessonItem from "@/components/timetable/TimetableLessonItem"
 import useDateFromSeconds from "@/hooks/useDateFromSeconds"
 import useTimeDifferenceHeight from "@/hooks/useTimeDifferenceHeight"
-import { StyleSheet } from "react-native"
-import TimetableLessonItem from "./TimetableLessonItem"
-import { View } from "tamagui"
-import { TimetableResponse, TimetableTimeResponse } from "@das-dui/api-client"
-import { FC } from "react"
 
 interface TimetableBlockItemProps {
 	item: TimetableTimeResponse.TimetableTime

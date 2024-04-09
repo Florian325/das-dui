@@ -1,7 +1,11 @@
 /* eslint-disable react/display-name */
-import { FlashList } from "@shopify/flash-list"
-import { useInfiniteQuery } from "@tanstack/react-query"
+import { Fragment, LegacyRef, ReactNode, forwardRef } from "react"
+
+import * as Linking from "expo-linking"
 import { Link, Stack, useLocalSearchParams } from "expo-router"
+
+import { useInfiniteQuery } from "@tanstack/react-query"
+
 import {
 	H2,
 	ListItem,
@@ -12,16 +16,17 @@ import {
 	Text,
 	View,
 } from "tamagui"
-import * as Linking from "expo-linking"
+
+import { FlashList } from "@shopify/flash-list"
+
 import { NewsResponse } from "@das-dui/api-client"
 
 import NewsListItem from "@/components/news/NewsListItem"
+import GenericIcon from "@/components/ui/GenericIcon"
+import InputBar from "@/components/ui/InputBar"
 import RenderHTMLGeneric from "@/components/ui/RenderHTMLGeneric"
 import { useGetUserId } from "@/context/userId"
 import useApiClient from "@/hooks/useApiClient"
-import GenericIcon from "@/components/ui/GenericIcon"
-import { Fragment, LegacyRef, ReactNode, forwardRef } from "react"
-import InputBar from "@/components/ui/InputBar"
 
 export default function ChatPage() {
 	const { chatId, displayname, id, cloudId } = useLocalSearchParams<{

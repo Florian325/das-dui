@@ -1,7 +1,10 @@
-import { useQueryClient } from "@tanstack/react-query"
 import { FC, useMemo } from "react"
-import TimetableBlockItem from "./TimetableBlockItem"
+
+import { useQueryClient } from "@tanstack/react-query"
+
 import { TimetableResponse, TimetableTimeResponse } from "@das-dui/api-client"
+
+import TimetableBlockItem from "@/components/timetable/TimetableBlockItem"
 
 interface TimetableGridProps {
 	data: TimetableResponse.Timetable

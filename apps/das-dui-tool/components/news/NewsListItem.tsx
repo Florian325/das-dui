@@ -1,10 +1,12 @@
-import { NewsResponse } from "@das-dui/api-client"
 import { FC, memo } from "react"
-import NewsPostContainer from "./news-post/NewsPostContainer"
-import NewsPostHeader from "./news-post/NewsPostHeader"
-import NewsPostBody from "./news-post/NewsPostBody"
-import NewsPostAttachments from "./news-post/NewsPostAttachments"
-import NewsPostSurvey from "./news-post/NewsPostSurvey"
+
+import { NewsResponse } from "@das-dui/api-client"
+
+import NewsPostAttachments from "@/components/news/news-post/NewsPostAttachments"
+import NewsPostBody from "@/components/news/news-post/NewsPostBody"
+import NewsPostContainer from "@/components/news/news-post/NewsPostContainer"
+import NewsPostHeader from "@/components/news/news-post/NewsPostHeader"
+import NewsPostSurvey from "@/components/news/news-post/NewsPostSurvey"
 
 interface NewsListItemProps {
 	item: NewsResponse.News

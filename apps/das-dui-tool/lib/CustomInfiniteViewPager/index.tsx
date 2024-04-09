@@ -1,9 +1,10 @@
 // Inspired by https://github.com/computerjazz/react-native-infinite-pager/blob/main/src/index.tsx
-
-import React, { useState, useRef, memo, ReactNode } from "react"
-import { useStableCallback } from "./useStableCallback"
+import React, { ReactNode, memo, useRef, useState } from "react"
 import PagerView, { PagerViewProps } from "react-native-pager-view"
+
 import { View } from "tamagui"
+
+import { useStableCallback } from "@/lib/CustomInfiniteViewPager/useStableCallback"
 
 export type InfinitePagerPageProps = {
 	index: number

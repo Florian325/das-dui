@@ -1,6 +1,7 @@
-import { useSetAuthToken, useSetIsAuthenticated } from "@/context/auth"
-import { QueryFilters, useQueryClient } from "@tanstack/react-query"
 import { FC, ReactNode } from "react"
+
+import { QueryFilters, useQueryClient } from "@tanstack/react-query"
+
 import {
 	Button,
 	H4,
@@ -12,6 +13,8 @@ import {
 	YGroup,
 	YStack,
 } from "tamagui"
+
+import { useSetAuthToken, useSetIsAuthenticated } from "@/context/auth"
 
 interface DebugMenuItemProps {
 	filter: QueryFilters

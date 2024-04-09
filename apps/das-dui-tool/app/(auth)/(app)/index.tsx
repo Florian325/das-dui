@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native"
+
 import { Text, View } from "tamagui"
 
 export default function IndexView() {
