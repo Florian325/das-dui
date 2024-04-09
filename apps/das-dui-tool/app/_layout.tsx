@@ -12,7 +12,7 @@ import { useEffect } from "react"
 import { TamaguiProvider, Theme, useTheme } from "tamagui"
 
 import appConfig from "../tamagui.config"
-import { useColorScheme } from "react-native"
+import { Platform, useColorScheme } from "react-native"
 import {
 	RenderHTMLConfigProvider,
 	TRenderEngineProvider,
@@ -84,8 +84,14 @@ function RootLayoutNav() {
 	const theme = useTheme()
 	const colorScheme = useColorScheme()
 
-	NavigationBar.setBackgroundColorAsync(theme.background.val)
-	NavigationBar.setButtonStyleAsync(colorScheme === "dark" ? "light" : "dark")
+	useEffect(() => {
+		if (Platform.OS === "android") {
+			NavigationBar.setBackgroundColorAsync(theme.background.val)
+			NavigationBar.setButtonStyleAsync(
+				colorScheme === "dark" ? "light" : "dark"
+			)
+		}
+	}, [theme.background.val, colorScheme])
 
 	return (
 		<TRenderEngineProvider
