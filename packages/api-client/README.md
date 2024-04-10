@@ -60,7 +60,7 @@ const fetchUserData = async (userId: number | string) => {
 
 ## 📚 Documentation
 
-For detailed usage instructions and available methods, please refer to the [documentation](https://github.com/Florian325/das-dui/wiki/@das%E2%80%90dui-api%E2%80%90client).
+For detailed usage instructions and available methods, please refer to the [documentation](https://github.com/Florian325/das-dui/blob/main/packages/api-client/DOCS.md).
 
 ## 💡 Contribution
 
