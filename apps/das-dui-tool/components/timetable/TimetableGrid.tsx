@@ -17,15 +17,19 @@ const TimetableGrid: FC<TimetableGridProps> = ({ data }) => {
 		TimetableTimeResponse.TimetableTime[] | null
 	>(["timetableTimes"])
 
-	const timetableData = useMemo(() => {
-		const td: { [key: string]: TimetableResponse.Lesson[] } = {}
-		data.lessons.forEach((item) =>
-			td[item.meta.displayname_hour]
-				? td[item.meta.displayname_hour].push(item)
-				: (td[item.meta.displayname_hour] = [item])
-		)
-		return td
-	}, [data])
+	const timetableData = useMemo(
+		() =>
+			data.lessons.reduce(
+				(x, y) => {
+					;(x[y.meta.displayname_hour] =
+						x[y.meta.displayname_hour] || []).push(y)
+
+					return x
+				},
+				{} as { [key: string]: TimetableResponse.Lesson[] }
+			),
+		[data.last_updated_at]
+	)
 
 	return (
 		<>
