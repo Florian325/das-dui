@@ -70,6 +70,7 @@ enum LessonKind {
 	CANCLED = "CANCLED",
 	EVENT = "EVENT",
 	SUBSTITUTION = "SUBSTITUTION",
+	HOLIDAY = "HOLIDAY",
 }
 
 export interface Timetable {
