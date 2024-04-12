@@ -142,20 +142,18 @@ export interface UserMeta {
 }
 
 export interface User {
-	data: {
-		uuid: string
-		firstname: string
-		lastname: string
-		email: string
-		is_ghost: boolean
-		is_trackable: boolean
-		dob?: string
-		external_source_id?: string
-		tfa_mode?: string
-		permissions: any[] // You might want to replace `any[]` with a more specific type if possible
-		school: School
-		properties: UserProperties
-	}
+	uuid: string
+	firstname: string
+	lastname: string
+	email: string
+	is_ghost: boolean
+	is_trackable: boolean
+	dob?: string
+	external_source_id?: string
+	tfa_mode?: string
+	permissions: any[] // You might want to replace `any[]` with a more specific type if possible
+	school: School
+	properties: UserProperties
 	bookable: null
 	can: Record<string, number>
 	child_pivot: any[] // You might want to replace `any[]` with a more specific type if possible
