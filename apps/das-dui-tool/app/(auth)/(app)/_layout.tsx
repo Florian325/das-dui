@@ -62,6 +62,15 @@ export default function AuthAppLayout() {
 				}}
 			/>
 			<Tabs.Screen
+				name="stats"
+				options={{
+					title: "Stats",
+					tabBarIcon: ({ color }) => (
+						<TabBarIcon name="bar-chart" color={color} />
+					),
+				}}
+			/>
+			<Tabs.Screen
 				name="debug"
 				options={{
 					title: "Debug",
