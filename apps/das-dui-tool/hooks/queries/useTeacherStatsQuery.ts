@@ -36,8 +36,6 @@ export const useTeachersStatsQuery = () => {
 	const query = useQuery({
 		queryKey: ["stats", { userId: userId }, { fromDate, toDate }],
 		queryFn: () => getTeachersStats(timetableResponse),
-		staleTime: 1000,
-		gcTime: 1000,
 	})
 
 	return query
