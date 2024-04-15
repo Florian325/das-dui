@@ -250,6 +250,19 @@ class AxiosApiClient {
 		return response
 	}
 
+	getChatMessageById = async ({
+		chatId,
+		messageId,
+	}: {
+		chatId: number
+		messageId: string
+	}) => {
+		const response = await this.instance.get<
+			BaseResponse<ChatMessagesResponse.ChatMessage>
+		>(`channels/chats/${chatId}/messages/${messageId}`)
+		return response
+	}
+
 	getChatMessagesByPage = async ({
 		chatId,
 		page,
