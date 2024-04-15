@@ -265,6 +265,24 @@ class AxiosApiClient {
 		return response
 	}
 
+	postChatMessage = async ({
+		chatId,
+		message,
+		file,
+	}: {
+		chatId: number
+		message: string
+		file?: File
+	}) => {
+		const response = await this.instance.post<
+			BaseResponse<ChatMessagesResponse.ChatMessage>
+		>(`channels/chats/${chatId}/messages`, {
+			message,
+			file,
+		})
+		return response
+	}
+
 	getChatMemers = async ({
 		chatId,
 		page = 1,
