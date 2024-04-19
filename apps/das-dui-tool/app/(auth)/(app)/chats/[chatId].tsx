@@ -4,7 +4,12 @@ import { Fragment, LegacyRef, ReactNode, forwardRef } from "react"
 import * as Linking from "expo-linking"
 import { Link, Stack, useLocalSearchParams } from "expo-router"
 
-import { useInfiniteQuery } from "@tanstack/react-query"
+import {
+	QueryKey,
+	useInfiniteQuery,
+	useMutation,
+	useQueryClient,
+} from "@tanstack/react-query"
 
 import {
 	H2,
@@ -23,7 +28,7 @@ import { NewsResponse } from "@das-dui/api-client"
 
 import NewsListItem from "@/components/news/NewsListItem"
 import GenericIcon from "@/components/ui/GenericIcon"
-import InputBar from "@/components/ui/InputBar"
+import MessageInput from "@/components/ui/MessageInput"
 import RenderHTMLGeneric from "@/components/ui/RenderHTMLGeneric"
 import { useGetUserId } from "@/context/userId"
 import useApiClient from "@/hooks/useApiClient"
@@ -39,8 +44,11 @@ export default function ChatPage() {
 	const client = useApiClient()
 	const userId = useGetUserId()
 
+	const queryClient = useQueryClient()
+	const queryKey: QueryKey = ["chat", { chatId: Number(chatId) }]
+
 	const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
-		queryKey: ["chat", { chatId: Number(chatId) }],
+		queryKey,
 		queryFn: ({ pageParam }) =>
 			client
 				.getChatMessagesByPage({
@@ -54,6 +62,20 @@ export default function ChatPage() {
 		},
 	})
 	const messages = data?.pages.map((page) => page.data).flat()
+
+	const chatMutation = useMutation({
+		mutationFn: (message: { content: string }) => {
+			return client.postChatMessage({
+				chatId: Number(chatId),
+				message: message.content,
+			})
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries({
+				queryKey,
+			})
+		},
+	})
 
 	return (
 		<>
@@ -106,10 +128,14 @@ export default function ChatPage() {
 				}
 				estimatedItemSize={50}
 				ListHeaderComponent={
-					<InputBar
-						placeholder="Send Message"
+					<MessageInput
+						placeholder="Write Message"
 						buttonChildren="Send"
 						stackProps={{ mt: "$4" }}
+						onSend={(message) =>
+							chatMutation.mutate({ content: message })
+						}
+						isLoading={chatMutation.isPending}
 					/>
 				}
 				disableAutoLayout
