@@ -290,7 +290,7 @@ class AxiosApiClient {
 		const response = await this.instance.post<
 			BaseResponse<ChatMessagesResponse.ChatMessage>
 		>(`channels/chats/${chatId}/messages`, {
-			message,
+			content: message,
 			file,
 		})
 		return response
