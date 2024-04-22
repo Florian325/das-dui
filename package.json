@@ -20,7 +20,9 @@
 		"worksapces:format:fix": "yarn workspaces foreach -Ap run format:prettier:fix",
 		"worksapces:lint:check": "yarn workspaces foreach -Ap run lint:eslint:check",
 		"worksapces:lint:fix": "yarn workspaces foreach -Ap run lint:eslint:fix",
-		"workspaces:tsc:test": "yarn workspaces foreach -Ap run tsc:test"
+		"workspaces:tsc:test": "yarn workspaces foreach -Ap run tsc:test",
+		"app:dev": "yarn workspace das-dui-tool start",
+		"app:android:build": "yarn workspace das-dui-tool android:build"
 	},
 	"private": true,
 	"dependencies": {

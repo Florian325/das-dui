@@ -16,6 +16,7 @@
 		"ios": "expo run:ios",
 		"web": "expo start --web",
 		"test": "jest --watchAll",
+		"android:build": "expo run:android --variant release --no-install",
 		"format:prettier:check": "prettier . --check",
 		"format:prettier:fix": "prettier . --write",
 		"lint:eslint:check": "eslint .",
