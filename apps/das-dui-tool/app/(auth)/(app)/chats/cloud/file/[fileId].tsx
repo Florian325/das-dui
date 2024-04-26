@@ -1,19 +1,18 @@
 import { useState } from "react"
 import { TouchableOpacity } from "react-native"
 
-import { Link, Stack, useLocalSearchParams } from "expo-router"
-import * as WebBrowser from "expo-web-browser"
+import { Stack, useLocalSearchParams } from "expo-router"
 
 import { useInfiniteQuery } from "@tanstack/react-query"
 
-import { H6, ListItem, Spinner, View, useTheme } from "tamagui"
+import { H6, Spinner, View, useTheme } from "tamagui"
 
 import { FlashList } from "@shopify/flash-list"
 
+import FileListItemLink from "@/components/cloud/FileListItemLink"
 import GenericIcon from "@/components/ui/GenericIcon"
 import InputBar from "@/components/ui/InputBar"
 import useApiClient from "@/hooks/useApiClient"
-import { iconNameBasedOnFileExtension } from "@/utils/iconNameBasedOnFileExtension"
 
 export default function CloudPage() {
 	const { fileId, cloudId, path } = useLocalSearchParams<{
@@ -101,83 +100,17 @@ export default function CloudPage() {
 						onSubmit={() => setSearchQuery("")}
 					/>
 				}
-				renderItem={({ item }) => {
-					const params = new URLSearchParams({
-						name: item.name,
-					})
-					const nameParam = params
-						.toString()
-						.split("&")[0]
-						.split("=")[1]
-						.replaceAll("+", " ")
-
-					return (
-						<Link
-							push
-							href={
-								item.file_type === "DIR"
-									? {
-											pathname:
-												"/(auth)/(app)/chats/cloud/file/[fileId]",
-											params: {
-												fileId: item.uuid,
-												cloudId: cloudId,
-												path: item.path,
-											},
-										}
-									: {
-											pathname:
-												"/(auth)/(app)/chats/cloud/open_file/[fileId]",
-											params: {
-												fileId: item.uuid,
-												cloudId: item.cloud_id,
-												name: nameParam,
-											},
-										}
-							}
-							asChild
-						>
-							<ListItem
-								title={item.name}
-								subTitle={item.meta.subtitle}
-								icon={
-									<GenericIcon
-										name={
-											item.file_type === "DIR"
-												? item.meta.files_count > 0
-													? "folder"
-													: "folder-open"
-												: iconNameBasedOnFileExtension(
-														item.extension
-													)
-										}
-										size={30}
-										color={theme.color10.val}
-									/>
-								}
-								iconAfter={
-									<TouchableOpacity
-										onPress={() =>
-											WebBrowser.openBrowserAsync(
-												item.meta.download_uri
-											)
-										}
-									>
-										<GenericIcon
-											name="download"
-											color={theme.color9.val}
-										/>
-									</TouchableOpacity>
-								}
-								bordered
-								pressTheme
-								hoverTheme
-								br={"$4"}
-								my="$2"
-							/>
-						</Link>
-					)
-				}}
+				renderItem={({ item }) => (
+					<FileListItemLink
+						cloud_id={item.cloud_id}
+						extension={item.extension}
+						file_type={item.file_type}
+						meta={item.meta}
+						name={item.name}
+						uuid={item.uuid}
+						path={item.path}
+					/>
+				)}
 				onEndReached={fetchNextPage}
 				estimatedItemSize={80}
 				contentContainerStyle={{ padding: 20 }}
