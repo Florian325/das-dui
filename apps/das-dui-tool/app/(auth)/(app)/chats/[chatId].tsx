@@ -1,8 +1,3 @@
-/* eslint-disable react/display-name */
-import { Fragment, LegacyRef, ReactNode, forwardRef } from "react"
-import { StyleSheet } from "react-native"
-
-import * as Linking from "expo-linking"
 import { Link, Stack, useLocalSearchParams } from "expo-router"
 
 import {
@@ -12,28 +7,13 @@ import {
 	useQueryClient,
 } from "@tanstack/react-query"
 
-import {
-	H2,
-	Image,
-	ListItem,
-	ListItemSubtitle,
-	SizableText,
-	Spinner,
-	TamaguiElement,
-	Text,
-	View,
-} from "tamagui"
+import { H2, Spinner } from "tamagui"
 
 import { FlashList } from "@shopify/flash-list"
 
-import { NewsResponse } from "@das-dui/api-client"
-
-import FileLink from "@/components/cloud/FileLink"
-import FileListItemLink from "@/components/cloud/FileListItemLink"
-import NewsListItem from "@/components/news/NewsListItem"
+import ChatItem from "@/components/chat/ChatItem"
 import GenericIcon from "@/components/ui/GenericIcon"
 import MessageInput from "@/components/ui/MessageInput"
-import RenderHTMLGeneric from "@/components/ui/RenderHTMLGeneric"
 import { useGetUserId } from "@/context/userId"
 import useApiClient from "@/hooks/useApiClient"
 
@@ -86,7 +66,7 @@ export default function ChatPage() {
 			<Stack.Screen
 				options={{
 					title: displayname,
-					headerTitle(props: { children: ReactNode }) {
+					headerTitle({ children }) {
 						return (
 							<Link
 								push
@@ -97,7 +77,7 @@ export default function ChatPage() {
 									},
 								}}
 							>
-								<H2>{props.children}</H2>
+								<H2>{children}</H2>
 							</Link>
 						)
 					},
@@ -124,9 +104,10 @@ export default function ChatPage() {
 			/>
 			<FlashList
 				contentContainerStyle={{ padding: 20 }}
-				data={messages ?? []}
-				onEndReached={() => fetchNextPage()}
-				ListEmptyComponent={<Spinner />}
+				data={messages}
+				extraData={{ messages: messages, userId: userId }}
+				onEndReached={fetchNextPage}
+				ListEmptyComponent={Spinner}
 				ListFooterComponent={
 					<>{isFetchingNextPage && <Spinner mb="$4" />}</>
 				}
@@ -142,196 +123,9 @@ export default function ChatPage() {
 						isLoading={chatMutation.isPending}
 					/>
 				}
-				disableAutoLayout
-				CellRendererComponent={forwardRef(
-					(props: { index: number; children: ReactNode }, ref) => {
-						const messageDate = new Date(
-							(messages ?? [])[props.index]?.created_at
-						)
-						const prevMessageDate = new Date(
-							(messages ?? [])[props.index + 1]?.created_at
-						)
-						return (
-							<View
-								ref={ref as LegacyRef<TamaguiElement>}
-								{...props}
-								py="$2"
-							>
-								{messageDate.getDate() !==
-									prevMessageDate.getDate() && (
-									<View alignItems="center" pb="$4">
-										<View
-											p="$2"
-											theme={"alt1"}
-											bw="$0.5"
-											bc={"$placeholderColor"}
-											br={"$4"}
-										>
-											<Text>
-												{messageDate.toLocaleDateString()}
-											</Text>
-										</View>
-									</View>
-								)}
-								{props.children}
-							</View>
-						)
-					}
-				)}
-				renderItem={({ item }) => (
-					<Fragment>
-						{item.type === "MESSAGE" && (
-							<View
-								alignItems={
-									item.user.id === userId
-										? "flex-end"
-										: "flex-start"
-								}
-								flex={1}
-							>
-								<View
-									py="$2"
-									px="$4"
-									bw="$0.5"
-									bc={"$placeholderColor"}
-									br={"$4"}
-									maxWidth={"80%"}
-								>
-									<ListItemSubtitle>
-										{item.user.meta.displayname}
-									</ListItemSubtitle>
-									{item.preview && (
-										<ListItem
-											onPress={() =>
-												Linking.openURL(
-													item.preview?.link ?? ""
-												)
-											}
-											pressTheme
-											hoverTheme
-											br="$4"
-											title={item.preview.title}
-											subTitle={item.preview.description}
-										/>
-									)}
-									{item.file ? (
-										<>
-											{item.file.type?.startsWith(
-												"image"
-											) ? (
-												<FileLink
-													cloud_id={
-														item.file.cloud_id
-													}
-													file_type={
-														item.file.file_type
-													}
-													name={item.file.name}
-													path={item.file.path}
-													uuid={item.file.uuid}
-												>
-													<Image
-														source={{
-															uri:
-																item.file.meta
-																	.thumbnail_uri ??
-																item.file.meta
-																	.uri,
-														}}
-														style={styles.image}
-													/>
-												</FileLink>
-											) : (
-												<FileListItemLink
-													cloud_id={
-														item.file.cloud_id
-													}
-													extension={
-														item.file.extension
-													}
-													file_type={
-														item.file.file_type
-													}
-													meta={item.file.meta}
-													name={item.file.name}
-													path={item.file.path}
-													uuid={item.file.uuid}
-												/>
-											)}
-										</>
-									) : (
-										<RenderHTMLGeneric
-											content={
-												item.content_rendered ||
-												"<i>Deleted</i>"
-											}
-										/>
-									)}
-
-									<View alignSelf="flex-end">
-										<SizableText fontSize={"$3"}>
-											{new Date(
-												item.created_at
-											).toLocaleTimeString()}
-										</SizableText>
-									</View>
-								</View>
-							</View>
-						)}
-						{item.type === "HINT" && (
-							<View alignItems={"center"} flex={1}>
-								{item.target_type === "news" ? (
-									<View
-										width={"100%"}
-										py="$2"
-										px="$4"
-										bw="$0.5"
-										bc={"$placeholderColor"}
-										br={"$4"}
-									>
-										<ListItemSubtitle>
-											{item.user.meta.displayname}
-										</ListItemSubtitle>
-										<NewsListItem
-											item={
-												item.target as NewsResponse.News
-											}
-										/>
-										<View alignSelf="flex-end">
-											<SizableText fontSize={"$3"}>
-												{new Date(
-													item.created_at
-												).toLocaleTimeString()}
-											</SizableText>
-										</View>
-									</View>
-								) : (
-									<View
-										py="$2"
-										px="$4"
-										theme={"alt1"}
-										backgroundColor={"$blue4"}
-										br={"$4"}
-									>
-										<RenderHTMLGeneric
-											content={item.content_rendered}
-										/>
-									</View>
-								)}
-							</View>
-						)}
-					</Fragment>
-				)}
+				renderItem={ChatItem}
 				inverted
 			/>
 		</>
 	)
 }
-
-const styles = StyleSheet.create({
-	image: {
-		width: 200,
-		height: 150,
-		resizeMode: "contain",
-	},
-})
