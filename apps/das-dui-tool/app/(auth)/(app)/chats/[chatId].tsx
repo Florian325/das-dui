@@ -1,5 +1,6 @@
 /* eslint-disable react/display-name */
 import { Fragment, LegacyRef, ReactNode, forwardRef } from "react"
+import { StyleSheet } from "react-native"
 
 import * as Linking from "expo-linking"
 import { Link, Stack, useLocalSearchParams } from "expo-router"
@@ -13,6 +14,7 @@ import {
 
 import {
 	H2,
+	Image,
 	ListItem,
 	ListItemSubtitle,
 	SizableText,
@@ -26,6 +28,8 @@ import { FlashList } from "@shopify/flash-list"
 
 import { NewsResponse } from "@das-dui/api-client"
 
+import FileLink from "@/components/cloud/FileLink"
+import FileListItemLink from "@/components/cloud/FileListItemLink"
 import NewsListItem from "@/components/news/NewsListItem"
 import GenericIcon from "@/components/ui/GenericIcon"
 import MessageInput from "@/components/ui/MessageInput"
@@ -210,12 +214,60 @@ export default function ChatPage() {
 											subTitle={item.preview.description}
 										/>
 									)}
-									<RenderHTMLGeneric
-										content={
-											item.content_rendered ||
-											"<i>Deleted</i>"
-										}
-									/>
+									{item.file ? (
+										<>
+											{item.file.type?.startsWith(
+												"image"
+											) ? (
+												<FileLink
+													cloud_id={
+														item.file.cloud_id
+													}
+													file_type={
+														item.file.file_type
+													}
+													name={item.file.name}
+													path={item.file.path}
+													uuid={item.file.uuid}
+												>
+													<Image
+														source={{
+															uri:
+																item.file.meta
+																	.thumbnail_uri ??
+																item.file.meta
+																	.uri,
+														}}
+														style={styles.image}
+													/>
+												</FileLink>
+											) : (
+												<FileListItemLink
+													cloud_id={
+														item.file.cloud_id
+													}
+													extension={
+														item.file.extension
+													}
+													file_type={
+														item.file.file_type
+													}
+													meta={item.file.meta}
+													name={item.file.name}
+													path={item.file.path}
+													uuid={item.file.uuid}
+												/>
+											)}
+										</>
+									) : (
+										<RenderHTMLGeneric
+											content={
+												item.content_rendered ||
+												"<i>Deleted</i>"
+											}
+										/>
+									)}
+
 									<View alignSelf="flex-end">
 										<SizableText fontSize={"$3"}>
 											{new Date(
@@ -275,3 +327,11 @@ export default function ChatPage() {
 		</>
 	)
 }
+
+const styles = StyleSheet.create({
+	image: {
+		width: 200,
+		height: 150,
+		resizeMode: "contain",
+	},
+})
