@@ -6,7 +6,7 @@ import DisplayTeacherStats from "@/components/teachers-stats/DisplayTeacherStats
 import { useTeachersStatsQuery } from "@/hooks/queries/useTeacherStatsQuery"
 
 export default function StatsPage() {
-	const { data, isLoading } = useTeachersStatsQuery()
+	const { data, isLoading, refetch, isRefetching } = useTeachersStatsQuery()
 
 	if (isLoading) {
 		return (
@@ -22,7 +22,14 @@ export default function StatsPage() {
 			</View>
 		)
 	}
-	return <DisplayTeacherStats stats={data} />
+
+	return (
+		<DisplayTeacherStats
+			stats={data}
+			refetchFn={refetch}
+			isRefetching={isRefetching}
+		/>
+	)
 }
 
 const styles = StyleSheet.create({

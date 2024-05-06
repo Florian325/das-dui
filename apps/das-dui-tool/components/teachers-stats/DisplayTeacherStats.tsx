@@ -6,7 +6,11 @@ import { FlashList } from "@shopify/flash-list"
 
 import { TeacherStats } from "@/lib/getTeachersStats"
 
-const DisplayTeacherStats: FC<{ stats: TeacherStats[] }> = ({ stats }) => {
+const DisplayTeacherStats: FC<{
+	stats: TeacherStats[]
+	refetchFn: () => void
+	isRefetching: boolean
+}> = ({ stats, refetchFn, isRefetching }) => {
 	const $space = getTokens().space
 
 	return (
@@ -16,6 +20,8 @@ const DisplayTeacherStats: FC<{ stats: TeacherStats[] }> = ({ stats }) => {
 				paddingHorizontal: $space.$4.val,
 				paddingVertical: $space.$2.val,
 			}}
+			refreshing={isRefetching}
+			onRefresh={refetchFn}
 			renderItem={({ item }) => (
 				<Card
 					key={item.teacherId}
@@ -30,13 +36,19 @@ const DisplayTeacherStats: FC<{ stats: TeacherStats[] }> = ({ stats }) => {
 					<Card.Footer padded flexDirection="column">
 						<H6>Total Lessons: {item.stats.totalLessons}</H6>
 						<H6 theme={"green_alt1"}>
-							Attendent Lessons: {item.stats.attendentLessons}
+							Attended Lessons: {item.stats.attendedLessons}
 						</H6>
 						<H6 theme={"red_alt1"}>
-							Cancelled Lessons: {item.stats.cancelledLessons}
+							Unattended Lessons: {item.stats.unAttendedLessons}
 						</H6>
 						<H6 theme={"orange_alt1"}>
-							Substituted Lessons: {item.stats.substitutedLessons}
+							Attendance Rate:{" "}
+							{(
+								(item.stats.attendedLessons /
+									item.stats.totalLessons) *
+								100
+							).toFixed(1)}
+							%
 						</H6>
 					</Card.Footer>
 				</Card>
