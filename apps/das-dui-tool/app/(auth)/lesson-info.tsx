@@ -10,6 +10,7 @@ import {
 	H5,
 	ListItem,
 	ListItemSubtitle,
+	ScrollView,
 	Separator,
 	Spinner,
 	Text,
@@ -118,124 +119,129 @@ export default function LessonInfo() {
 	if (!lessonInfo) return <Text>No Lesson Info available</Text>
 
 	return (
-		<YStack style={styles.container} p={"$5"} gap={"$5"}>
-			<YGroup
-				alignSelf="center"
-				bordered
-				size="$5"
-				separator={<Separator />}
-			>
-				<YGroup.Item>
-					<ListItem
-						hoverTheme
-						pressTheme
-						title="Room"
-						subTitle={
-							<>
-								{lessonInfo?.bookables.map((bookable) => (
-									<ListItemSubtitle key={bookable.id}>
-										{bookable.shortcut}
-									</ListItemSubtitle>
-								))}
-								{lessonInfo.referenced_target_lessons.map(
-									(lesson) =>
-										lesson.bookables
-											.filter(
-												(value) =>
-													!lessonInfo.bookables.find(
-														(item) =>
-															item.id === value.id
-													)
-											)
-											.map((bookables) => (
-												<ListItemSubtitleCanceled
-													key={bookables.id}
-												>
-													{bookables.shortcut}
-												</ListItemSubtitleCanceled>
-											))
-								)}
-							</>
-						}
-					/>
-				</YGroup.Item>
-				<YGroup.Item>
-					<ListItem
-						hoverTheme
-						pressTheme
-						title="Teacher"
-						subTitle={
-							<>
-								{lessonInfo.teachers.map((teacher) => (
-									<ListItemSubtitle key={teacher.id}>
-										{teacher.shortcut}
-									</ListItemSubtitle>
-								))}
-								{lessonInfo.referenced_target_lessons.map(
-									(lesson) =>
-										lesson.teachers
-											.filter(
-												(value) =>
-													!lessonInfo.teachers.find(
-														(item) =>
-															item.id === value.id
-													)
-											)
-											.map((teacher) => (
-												<ListItemSubtitleCanceled
-													key={teacher.id}
-												>
-													{teacher.shortcut}
-												</ListItemSubtitleCanceled>
-											))
-								)}
-							</>
-						}
-					/>
-				</YGroup.Item>
-				<YGroup.Item>
-					<ListItem
-						hoverTheme
-						pressTheme
-						title="Grade"
-						subTitle={
-							<>
-								{lessonInfo.grades.map((grade) => (
-									<ListItemSubtitle key={grade.id}>
-										{grade.shortcut}
-									</ListItemSubtitle>
-								))}
-								{lessonInfo.referenced_target_lessons.map(
-									(lesson) =>
-										lesson.grades
-											.filter(
-												(value) =>
-													!lessonInfo.grades.find(
-														(item) =>
-															item.id === value.id
-													)
-											)
-											.map((grade) => (
-												<ListItemSubtitleCanceled
-													key={grade.id}
-												>
-													{grade.shortcut}
-												</ListItemSubtitleCanceled>
-											))
-								)}
-							</>
-						}
-					/>
-				</YGroup.Item>
-			</YGroup>
-			<DigitalClassbookRoot lesson={lessonInfo} />
+		<ScrollView>
+			<YStack style={styles.container} p={"$5"} gap={"$5"}>
+				<YGroup
+					alignSelf="center"
+					bordered
+					size="$5"
+					separator={<Separator />}
+				>
+					<YGroup.Item>
+						<ListItem
+							hoverTheme
+							pressTheme
+							title="Room"
+							subTitle={
+								<>
+									{lessonInfo?.bookables.map((bookable) => (
+										<ListItemSubtitle key={bookable.id}>
+											{bookable.shortcut}
+										</ListItemSubtitle>
+									))}
+									{lessonInfo.referenced_target_lessons.map(
+										(lesson) =>
+											lesson.bookables
+												.filter(
+													(value) =>
+														!lessonInfo.bookables.find(
+															(item) =>
+																item.id ===
+																value.id
+														)
+												)
+												.map((bookables) => (
+													<ListItemSubtitleCanceled
+														key={bookables.id}
+													>
+														{bookables.shortcut}
+													</ListItemSubtitleCanceled>
+												))
+									)}
+								</>
+							}
+						/>
+					</YGroup.Item>
+					<YGroup.Item>
+						<ListItem
+							hoverTheme
+							pressTheme
+							title="Teacher"
+							subTitle={
+								<>
+									{lessonInfo.teachers.map((teacher) => (
+										<ListItemSubtitle key={teacher.id}>
+											{teacher.shortcut}
+										</ListItemSubtitle>
+									))}
+									{lessonInfo.referenced_target_lessons.map(
+										(lesson) =>
+											lesson.teachers
+												.filter(
+													(value) =>
+														!lessonInfo.teachers.find(
+															(item) =>
+																item.id ===
+																value.id
+														)
+												)
+												.map((teacher) => (
+													<ListItemSubtitleCanceled
+														key={teacher.id}
+													>
+														{teacher.shortcut}
+													</ListItemSubtitleCanceled>
+												))
+									)}
+								</>
+							}
+						/>
+					</YGroup.Item>
+					<YGroup.Item>
+						<ListItem
+							hoverTheme
+							pressTheme
+							title="Grade"
+							subTitle={
+								<>
+									{lessonInfo.grades.map((grade) => (
+										<ListItemSubtitle key={grade.id}>
+											{grade.shortcut}
+										</ListItemSubtitle>
+									))}
+									{lessonInfo.referenced_target_lessons.map(
+										(lesson) =>
+											lesson.grades
+												.filter(
+													(value) =>
+														!lessonInfo.grades.find(
+															(item) =>
+																item.id ===
+																value.id
+														)
+												)
+												.map((grade) => (
+													<ListItemSubtitleCanceled
+														key={grade.id}
+													>
+														{grade.shortcut}
+													</ListItemSubtitleCanceled>
+												))
+									)}
+								</>
+							}
+						/>
+					</YGroup.Item>
+				</YGroup>
+				<DigitalClassbookRoot lesson={lessonInfo} />
 
-			{/* Use `../` as a simple way to navigate to the root. This is not analogous to "goBack". */}
-			{!isPresented && <Link href="../">Dismiss</Link>}
-			<Link href="../">Back</Link>
-			{/* Native modals have dark backgrounds on iOS, set the status bar to light content. */}
-			<StatusBar style="light" />
-		</YStack>
+				{/* Use `../` as a simple way to navigate to the root. This is not analogous to "goBack". */}
+				{!isPresented && <Link href="../">Dismiss</Link>}
+				<Link href="../">Back</Link>
+				{/* Native modals have dark backgrounds on iOS, set the status bar to light content. */}
+				<StatusBar style="light" />
+			</YStack>
+		</ScrollView>
 	)
 }
 
