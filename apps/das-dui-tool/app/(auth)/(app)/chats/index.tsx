@@ -49,6 +49,7 @@ export default function ChatView() {
 								displayname: item.meta.displayname,
 								id: item.id,
 								cloudId: item.cloud_id,
+								canPostMessage: item.chat.can["post-message"],
 							},
 						}}
 						asChild

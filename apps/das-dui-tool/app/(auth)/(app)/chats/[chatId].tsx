@@ -18,12 +18,14 @@ import { useGetUserId } from "@/context/userId"
 import useApiClient from "@/hooks/useApiClient"
 
 export default function ChatPage() {
-	const { chatId, displayname, id, cloudId } = useLocalSearchParams<{
-		chatId: string
-		displayname: string
-		id: string
-		cloudId: string
-	}>()
+	const { chatId, displayname, id, cloudId, canPostMessage } =
+		useLocalSearchParams<{
+			chatId: string
+			displayname: string
+			id: string
+			cloudId: string
+			canPostMessage: string
+		}>()
 
 	const client = useApiClient()
 	const userId = useGetUserId()
@@ -116,6 +118,7 @@ export default function ChatPage() {
 					<MessageInput
 						placeholder="Write Message"
 						buttonChildren="Send"
+						disabled={!Number(canPostMessage)}
 						stackProps={{ mt: "$4" }}
 						onSend={(message) =>
 							chatMutation.mutate({ content: message })

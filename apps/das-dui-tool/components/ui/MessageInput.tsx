@@ -6,6 +6,7 @@ interface MessageInputProps {
 	placeholder?: string
 	onSend: (message: string) => void
 	isLoading: boolean
+	disabled: boolean
 	buttonChildren?: ReactNode | string
 	stackProps?: Omit<ComponentProps<typeof XStack>, "gap">
 	gap?: ComponentProps<typeof XStack>["gap"]
@@ -15,6 +16,7 @@ const MessageInput: FC<MessageInputProps> = ({
 	placeholder,
 	onSend,
 	isLoading,
+	disabled,
 	buttonChildren,
 	stackProps,
 	gap = "$4",
@@ -30,12 +32,16 @@ const MessageInput: FC<MessageInputProps> = ({
 			<Input
 				flexGrow={1}
 				maxWidth={"75%"}
+				disabled={disabled}
 				placeholder={placeholder}
 				multiline
 				value={message}
 				onChangeText={setMessage}
 			/>
-			<Button onPress={() => onSend(message)} disabled={!message}>
+			<Button
+				onPress={() => onSend(message)}
+				disabled={!message || disabled}
+			>
 				{!isLoading ? buttonChildren : <Spinner />}
 			</Button>
 		</XStack>
