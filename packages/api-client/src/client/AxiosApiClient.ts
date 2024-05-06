@@ -12,6 +12,7 @@ import {
 	NewsResponse,
 	SurveyResponse,
 	SurveyVoteRequest,
+	TimetableCourseResponse,
 	TimetableResponse,
 	TimetableTimeResponse,
 	UserActivitySummaryResponse,
@@ -169,6 +170,27 @@ class AxiosApiClient {
 			},
 		})
 
+		return response
+	}
+
+	public getTimetableCourses = async (userId: number | string = "self") => {
+		const response = await this.instance.get<
+			BaseResponse<TimetableCourseResponse.Course[]>
+		>(`users/${userId}/timetable/courses`)
+		return response
+	}
+
+	public getTimetableCourseById = async (
+		{
+			courseId,
+		}: {
+			courseId: number
+		},
+		userId: number | string = "self"
+	) => {
+		const response = await this.instance.get<
+			BaseResponse<TimetableCourseResponse.Course>
+		>(`users/${userId}/timetable/courses/${courseId}`)
 		return response
 	}
 

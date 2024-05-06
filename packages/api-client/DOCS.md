@@ -156,6 +156,33 @@ public getTimetableByDate({
     -   `userId`: (Optional) User ID.
 -   Returns: A Promise resolving to the AxiosResponse containing the timetable.
 
+##### `getTimetableCourses`
+
+```typescript
+public getTimetableCourses(userId?: number | string): Promise<AxiosResponse<BaseResponse<TTimetableCourseResponse.Course[]>>>
+```
+
+-   Lists available courses for the user's timetable.
+-   Parameters:
+    -   `userId`: (Optional) User ID.
+-   Returns: A Promise resolving to the AxiosResponse containing timetable courses.
+
+##### `getTimetableCoursesById`
+
+```typescript
+public getTimetableCoursesById({
+  courseId
+}: {
+  courseId: number
+}, userId?: number | string): Promise<AxiosResponse<BaseResponse<TTimetableCourseResponse.Course>>>
+```
+
+-   Retreives timetable course by id.
+-   Parameters:
+    -   `courseId`: Course Id
+    -   `userId`: (Optional) User ID.
+-   Returns: A Promise resolving to the AxiosResponse containing timetable courses.
+
 ##### `getUser`
 
 ```typescript
