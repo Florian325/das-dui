@@ -5,28 +5,15 @@ export interface TeacherStats {
 	teacherName: string
 	stats: {
 		totalLessons: number
-		attendentLessons: number
-		cancelledLessons: number
-		substitutedLessons: number
+		attendedLessons: number
+		unAttendedLessons: number
 	}
 }
 
 export const getTeachersStats = async (
 	data: Promise<TimetableResponse.Lesson[]>
 ): Promise<TeacherStats[]> => {
-	const stats = new Map<
-		number,
-		{
-			teacherId: number
-			teacherName: string
-			stats: {
-				totalLessons: number
-				attendentLessons: number
-				cancelledLessons: number
-				substitutedLessons: number
-			}
-		}
-	>()
+	const stats = new Map<number, TeacherStats>()
 
 	;(await data).forEach((lesson) => {
 		if (lesson.kind === "HOLIDAY") return
@@ -42,25 +29,22 @@ export const getTeachersStats = async (
 					teacherName: teacher.name,
 					stats: {
 						totalLessons: 0,
-						attendentLessons: 0,
-						cancelledLessons: 0,
-						substitutedLessons: 0,
+						attendedLessons: 0,
+						unAttendedLessons: 0,
 					},
 				})
 			}
 			const teacherStats = stats.get(teacherId)!
 			teacherStats.stats.totalLessons++
-			if (lesson.kind == "CANCLED") {
-				teacherStats.stats.cancelledLessons++
-			} else if (lesson.kind == "SUBSTITUTION") {
-				teacherStats.stats.substitutedLessons++
-			} else if (lesson.kind === null) {
-				teacherStats.stats.attendentLessons++
+			if (lesson.kind === null) {
+				teacherStats.stats.attendedLessons++
+			} else {
+				teacherStats.stats.unAttendedLessons++
 			}
 		})
 	})
 
 	return Array.from(stats.values()).sort((a, b) =>
-		a.stats.cancelledLessons > b.stats.cancelledLessons ? -1 : 1
+		a.stats.unAttendedLessons > b.stats.unAttendedLessons ? -1 : 1
 	)
 }
