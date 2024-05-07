@@ -10,9 +10,11 @@ import NewsPostSurvey from "@/components/news/news-post/NewsPostSurvey"
 
 interface NewsListItemProps {
 	item: NewsResponse.News
+	withoutMemo?: boolean
 }
 
-const NewsListItem: FC<NewsListItemProps> = ({ item }) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const NewsListItem: FC<NewsListItemProps> = ({ item, withoutMemo = false }) => {
 	return (
 		<NewsPostContainer>
 			<NewsPostHeader title={item.title} preview={item.preview} />
@@ -24,6 +26,16 @@ const NewsListItem: FC<NewsListItemProps> = ({ item }) => {
 }
 
 export default memo(NewsListItem, (prevProps, nextProps) => {
+	if (nextProps.withoutMemo || prevProps.withoutMemo) {
+		return false
+	}
+	if (
+		!prevProps.item.attachments.length ||
+		!nextProps.item.attachments.length
+	) {
+		return false
+	}
+
 	const attachmentsChanged = Boolean(
 		prevProps.item.attachments.filter(
 			(a, index) =>

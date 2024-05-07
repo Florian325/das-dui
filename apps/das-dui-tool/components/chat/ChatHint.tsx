@@ -12,7 +12,7 @@ interface ChatHintProps {
 }
 
 const ChatHint: FC<ChatHintProps> = ({ message }) => {
-	if (message.target_type === "news")
+	if (message.target_type === "news" && message.target)
 		return (
 			<View alignItems={"center"} flex={1}>
 				<View
@@ -24,9 +24,14 @@ const ChatHint: FC<ChatHintProps> = ({ message }) => {
 					br={"$4"}
 				>
 					<ListItemSubtitle>
-						{message.user.meta.displayname}
+						{message.user
+							? message.user.meta.displayname
+							: "Unknown User"}
 					</ListItemSubtitle>
-					<NewsListItem item={message.target as NewsResponse.News} />
+					<NewsListItem
+						item={message.target as NewsResponse.News}
+						withoutMemo
+					/>
 					<View alignSelf="flex-end">
 						<SizableText fontSize={"$3"}>
 							{new Date(message.created_at).toLocaleTimeString()}
