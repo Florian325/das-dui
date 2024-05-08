@@ -7,7 +7,7 @@ import {
 	useQueryClient,
 } from "@tanstack/react-query"
 
-import { H2, Spinner } from "tamagui"
+import { H2, Spinner, View } from "tamagui"
 
 import { FlashList } from "@shopify/flash-list"
 
@@ -78,28 +78,38 @@ export default function ChatPage() {
 										id: id,
 									},
 								}}
+								asChild
 							>
-								<H2>{children}</H2>
+								<View width={"85%"}>
+									<H2 adjustsFontSizeToFit numberOfLines={1}>
+										{children}
+									</H2>
+								</View>
 							</Link>
 						)
 					},
 					headerRight({ tintColor }) {
 						return (
-							<Link
-								push
-								href={{
-									pathname:
-										"/(auth)/(app)/chats/cloud/file/[fileId]",
-									params: {
-										fileId: "null",
-										cloudId,
-										path: "Cloud",
-									},
-								}}
-								asChild
-							>
-								<GenericIcon name="cloud" color={tintColor} />
-							</Link>
+							<View>
+								<Link
+									push
+									href={{
+										pathname:
+											"/(auth)/(app)/chats/cloud/file/[fileId]",
+										params: {
+											fileId: "null",
+											cloudId,
+											path: "Cloud",
+										},
+									}}
+									asChild
+								>
+									<GenericIcon
+										name="cloud"
+										color={tintColor}
+									/>
+								</Link>
+							</View>
 						)
 					},
 				}}

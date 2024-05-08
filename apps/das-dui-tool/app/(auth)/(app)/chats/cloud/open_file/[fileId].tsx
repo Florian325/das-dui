@@ -6,7 +6,7 @@ import * as WebBrowser from "expo-web-browser"
 
 import { useQuery } from "@tanstack/react-query"
 
-import { Spinner, Text } from "tamagui"
+import { H2, Spinner, View } from "tamagui"
 
 import GenericIcon from "@/components/ui/GenericIcon"
 import useApiClient from "@/hooks/useApiClient"
@@ -42,14 +42,11 @@ export default function FileViewPage() {
 					title: name,
 					headerTitle({ children }) {
 						return (
-							<Text
-								style={{
-									fontSize: 20,
-									fontWeight: "bold",
-								}}
-							>
-								{children}
-							</Text>
+							<View width={"85%"}>
+								<H2 adjustsFontSizeToFit numberOfLines={1}>
+									{children}
+								</H2>
+							</View>
 						)
 					},
 					headerRight({ tintColor }) {

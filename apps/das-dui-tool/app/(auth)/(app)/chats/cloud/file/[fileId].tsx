@@ -5,7 +5,7 @@ import { Stack, useLocalSearchParams } from "expo-router"
 
 import { useInfiniteQuery } from "@tanstack/react-query"
 
-import { H6, Spinner, View, useTheme } from "tamagui"
+import { H2, H6, Spinner, View, useTheme } from "tamagui"
 
 import { FlashList } from "@shopify/flash-list"
 
@@ -55,6 +55,15 @@ export default function CloudPage() {
 			<Stack.Screen
 				options={{
 					title: path,
+					headerTitle({ children }) {
+						return (
+							<View width={"85%"}>
+								<H2 adjustsFontSizeToFit numberOfLines={1}>
+									{children}
+								</H2>
+							</View>
+						)
+					},
 					headerRight({ tintColor }) {
 						return (
 							<TouchableOpacity>
