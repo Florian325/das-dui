@@ -1,19 +1,10 @@
-import { StyleSheet } from "react-native"
+import { useEffect } from "react"
 
-import { Text, View } from "tamagui"
+import { router } from "expo-router"
 
 export default function IndexView() {
-	return (
-		<View style={styles.container}>
-			<Text>News View</Text>
-		</View>
-	)
+	useEffect(() => {
+		router.replace("/(auth)/(app)/timetable")
+	}, [])
+	return <></>
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-})
